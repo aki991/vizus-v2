@@ -17,7 +17,7 @@
   function invalidateConfirmation() {
     $('#booking-result').hidden = true;
     $('#booking-confirm').disabled = false;
-    $('#booking-confirm').innerHTML = 'Potvrdite pregled <span aria-hidden="true">↗</span>';
+    $('#booking-confirm').textContent = 'Potvrdite pregled';
     $('#booking-error').textContent = '';
   }
   function syncSelection() {
