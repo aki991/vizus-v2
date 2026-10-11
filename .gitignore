@@ -1,0 +1,5 @@
+qa/
+*.tar.gz
+*.zip
+optimize-assets.py
+.DS_Store
