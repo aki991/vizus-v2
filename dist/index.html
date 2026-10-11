@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="description" content="Vizuelni demo sajta Očne kuće Vizus u Kragujevcu. Animirano oko, pregledi i demonstracija izbora lekara.">
   <title>Očna kuća Vizus — Jasan vid.</title>
-  <link rel="icon" href="assets/logo.jpg">
+  <link rel="icon" href="assets/logo-transparent.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
   <a class="skip-link" href="#sadrzaj">Preskočite na sadržaj</a>
   <header class="header" id="header">
     <div class="nav-shell shell">
-      <a class="brand" href="#pocetna" aria-label="Vizus — početna"><img src="assets/logo.jpg" alt="Vizus" width="150" height="150"></a>
+      <a class="brand" href="#pocetna" aria-label="Očna kuća Vizus — početna"><img src="assets/logo-transparent.png" alt="Vizus" width="150" height="100"><span class="brand-label">OČNA KUĆA<span>KRAGUJEVAC</span></span></a>
       <nav class="navigation" id="navigation" aria-label="Glavna navigacija">
         <a href="#o-nama">O nama</a><a href="#pregledi">Pregledi</a><a href="#lekari">Naši lekari</a><a href="#kontakt">Kontakt</a>
       </nav>
@@ -35,21 +35,29 @@
       <div class="hero-background" aria-hidden="true"></div><div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-main shell">
         <div class="hero-copy">
-          <p class="eyebrow">OČNA KUĆA VIZUS <span>·</span> KRAGUJEVAC</p>
-          <h1 id="hero-title">Jasan vid.<br>Sigurnost za<br><em>svaku generaciju.</em></h1>
+          <p class="eyebrow">OFTALMOLOŠKA ORDINACIJA <span>·</span> KRAGUJEVAC</p>
+          <h1 id="hero-title"><span>Očna kuća</span><strong>VIZUS</strong></h1>
+          <p class="hero-promise">Jasan vid. Sigurnost za<br>svaku generaciju.</p>
           <p class="hero-description">Posvećeni zdravlju vaših očiju.</p>
-          <div class="hero-actions"><button class="button button-primary" data-book>Zakažite pregled <span aria-hidden="true">↗</span></button><a class="button button-ghost" href="#lekari">Upoznajte lekare <span aria-hidden="true">↓</span></a></div>
+          <div class="hero-actions"><button class="button button-primary" data-book>Zakažite pregled <span aria-hidden="true">↗</span></button><a class="button button-ghost" href="#o-nama">O ordinaciji <span aria-hidden="true">↓</span></a></div>
         </div>
         <div class="hero-visual" id="hero-visual">
           <div class="eye-scene" id="eye-scene" aria-hidden="true">
             <div class="eye-orbit orbit-one"></div><div class="eye-orbit orbit-two"></div><div class="eye-orbit orbit-three"></div>
+            <svg class="blue-orbits" viewBox="0 0 600 600" aria-hidden="true">
+              <g class="blue-ring ring-outer"><circle cx="300" cy="300" r="282"/><circle class="blue-arc" cx="300" cy="300" r="282"/><circle class="blue-node" cx="300" cy="18" r="4"/><circle class="blue-node" cx="300" cy="582" r="2.5"/></g>
+              <g class="blue-ring ring-middle"><circle class="blue-arc" cx="300" cy="300" r="263"/><circle class="blue-node hollow" cx="300" cy="37" r="7"/><circle class="blue-node" cx="37" cy="300" r="3"/></g>
+              <g class="blue-ring ring-ellipse"><ellipse cx="300" cy="300" rx="294" ry="252"/><ellipse class="blue-arc" cx="300" cy="300" rx="294" ry="252"/><circle class="blue-node hollow" cx="594" cy="300" r="5"/></g>
+              <g class="blue-ring ring-inner"><circle class="blue-arc" cx="300" cy="300" r="240"/><circle class="blue-node" cx="300" cy="60" r="3"/></g>
+            </svg>
+            <div class="blue-satellite satellite-one"><i></i></div><div class="blue-satellite satellite-two"><i></i></div><div class="blue-satellite satellite-three"><i></i></div>
             <div class="eye-body"><img class="iris" src="assets/iris.webp" alt="" width="1024" height="1024"><div class="pupil"></div><div class="cornea"></div></div>
             <div class="focus-bracket top"></div><div class="focus-bracket bottom"></div><div class="orbit-spark"></div>
           </div>
           <div class="visual-caption"><span class="focus-dot" aria-hidden="true"></span> JASNOĆA U SVAKOM DETALJU <button id="motion-toggle" aria-label="Pauzirajte animaciju oka" aria-pressed="false"><svg class="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg><svg class="play-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5z"/></svg></button></div>
         </div>
       </div>
-      <div class="hero-bottom shell"><a href="#lekari" class="explore"><span class="scroll-line" aria-hidden="true"></span> Istražite Vizus</a><p class="demo-caption">AI vizueli · demo predlog</p></div>
+      <div class="hero-bottom shell"><a href="#o-nama" class="explore"><span class="scroll-line" aria-hidden="true"></span> Istražite Vizus</a><p class="demo-caption">AI vizueli · demo predlog</p></div>
     </section>
     <section class="quick-section shell" aria-labelledby="quick-title">
       <div class="quick-booking">
