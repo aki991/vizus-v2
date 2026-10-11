@@ -15,9 +15,9 @@
   <link rel="preload" href="assets/iris.webp" as="image">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/doctors-stage.css">
-  <link rel="stylesheet" href="assets/video-section.css">
   <link rel="stylesheet" href="assets/footer.css">
   <link rel="stylesheet" href="assets/navigation.css">
+  <link rel="stylesheet" href="assets/light-sections.css">
   <script src="klijenti/vizus/config.js" defer></script>
   <script src="assets/booking-availability.js" defer></script>
   <script src="assets/app.js" defer></script>
@@ -28,7 +28,7 @@
     <div class="nav-shell shell">
       <a class="brand" href="#pocetna" aria-label="Očna kuća Vizus — početna"><img src="assets/logo-transparent.png" alt="Vizus" width="150" height="100"><span class="brand-label">OČNA KUĆA<span>KRAGUJEVAC</span></span></a>
       <nav class="navigation" id="navigation" aria-label="Glavna navigacija">
-        <a href="#o-nama">O nama</a><a href="#pregledi">Pregledi</a><a href="#lekari">Naši lekari</a><a href="#kontakt">Kontakt</a>
+        <a href="#o-nama">O nama</a><a href="#pregledi">Naše usluge</a><a href="#lekari">Naši lekari</a><a href="#kontakt">Kontakt</a>
       </nav>
       <button class="button button-outline nav-book" data-book>Zakažite pregled <span aria-hidden="true">↗</span></button>
       <button class="menu-toggle" id="menu-toggle" aria-label="Otvorite meni" aria-controls="navigation" aria-expanded="false"><span></span><span></span></button>
@@ -63,26 +63,21 @@
       </div>
       <div class="hero-bottom shell"><a href="#o-nama" class="explore"><span class="scroll-line" aria-hidden="true"></span> Istražite Vizus</a><p class="demo-caption">AI vizueli · demo predlog</p></div>
     </section>
-    <section class="clinic-video" id="video-ordinacije" aria-labelledby="video-title">
-      <div class="video-frame" id="clinic-video-frame">
-        <div class="video-poster" aria-hidden="true"></div>
-        <div class="video-shade" aria-hidden="true"></div>
-        <div class="video-brand"><h2 id="video-title">VIZUS</h2><p>Posvećeni zdravlju vaših očiju</p></div>
-        <button class="video-toggle" id="clinic-video-toggle" type="button" aria-label="Pokrenite video" aria-pressed="true" hidden><span class="video-toggle-icon" aria-hidden="true">▶</span><span class="video-toggle-text">Pokreni video</span></button>
-      </div>
+    <section class="services section" id="pregledi" aria-labelledby="services-title">
+      <div class="shell"><div class="section-heading reveal"><div><p class="eyebrow">NAŠE USLUGE</p><h2 id="services-title">Pažnja za vaš vid.<br><em>U svakom detalju.</em></h2></div><p>Od provere vida do razgovora o vašim potrebama. Pronađite pregled koji želite da istražite.</p></div><div class="service-grid" id="service-list"></div><p class="section-note">Predlog uobičajenih oftalmoloških usluga za demo. Dostupnost konkretnog pregleda potvrđuje ordinacija.</p></div>
     </section>
     <section class="doctors-stage" id="lekari" aria-labelledby="doctors-title">
       <div id="doctor-stage" class="bina" role="group" aria-roledescription="karusel" aria-label="Izbor doktora">
+        <div class="bina-glava"><p class="eyebrow">NAŠ TIM</p><h2 id="doctors-title">Izaberite svog doktora.</h2><p class="hint hint-desktop">Izaberite lekara iz liste ili koristite ← →</p><p class="hint hint-mobile">Izaberite lekara ili prevucite sliku levo / desno</p></div>
         <div class="bina-scena" id="doctor-scene">
           <div class="bina-pozadina" aria-hidden="true"></div><div class="bina-krug" aria-hidden="true"></div><div class="bina-tlo" aria-hidden="true"></div>
           <div id="doctor-figures"></div>
-          <div class="bina-glava"><p class="eyebrow">NAŠ TIM</p><h2 id="doctors-title">Izaberite svog doktora.</h2><p class="hint hint-desktop">Kliknite na lekara ili koristite ← →</p><p class="hint hint-mobile">Prevucite levo ili desno</p></div>
         </div>
         <div class="bina-info" id="doctor-info">
           <div aria-live="polite" aria-atomic="true"><p class="bi-titula">DEMO PROFIL</p><h3 class="bi-ime" id="selected-doctor-name"></h3><p class="bi-bio" id="selected-doctor-bio"></p></div>
           <div class="bi-dugmad"><button class="button button-primary" data-book id="stage-book">Zakažite pregled <span aria-hidden="true">↗</span></button><button class="button button-ghost" id="doctor-profile-open">Ceo profil</button></div>
           <p id="selected-doctor-area" class="doctor-area"></p><div id="selected-doctor-topics" class="bi-oblasti"></div>
-          <p class="stage-demo-note">Likovi iz videa · imena i opisi su demo sadržaj.</p>
+          <p class="stage-demo-note">AI portreti · imena i opisi su demo sadržaj.</p>
         </div>
         <div class="bina-hud"><p class="hud-naslov">Izaberite lekara</p><div id="doctor-list" role="group" aria-label="Lekari u demo prikazu"></div></div>
         <div class="bina-dno"><button class="strelica" type="button" data-direction="-1" aria-label="Prethodni lekar">←</button><span class="brojac"><b id="doctor-current">01</b> / <span id="doctor-total">02</span></span><button class="strelica" type="button" data-direction="1" aria-label="Sledeći lekar">→</button></div>
@@ -91,9 +86,6 @@
     <section class="about section shell" id="o-nama" aria-labelledby="about-title">
       <div class="about-heading reveal"><p class="eyebrow">O NAMA</p><h2 id="about-title">Dve generacije.<br><em>Jedan cilj — zdrav vid.</em></h2></div>
       <div class="about-copy reveal"><p class="lead">Briga o vidu počinje poverenjem.</p><p>Očna kuća Vizus u Kragujevcu posvećena je zdravlju vaših očiju. Upoznajte naš tim, istražite preglede i izaberite način da nas kontaktirate.</p><a class="text-link" href="#pregledi">Istražite preglede <span aria-hidden="true">↗</span></a></div>
-    </section>
-    <section class="services section" id="pregledi" aria-labelledby="services-title">
-      <div class="shell"><div class="section-heading reveal"><div><p class="eyebrow">PREGLEDI</p><h2 id="services-title">Vašem vidu.<br><em>Sa pažnjom.</em></h2></div><p>Sve vrste oftalmoloških pregleda.<br>Za informacije o konkretnom pregledu, pozovite nas.</p></div><div class="service-list" id="service-list"></div><p class="section-note">Izbor pregleda u ovoj verziji služi demonstraciji sajta.</p></div>
     </section>
     <section class="visit section" aria-labelledby="visit-title"><div class="shell"><div class="section-heading reveal"><div><p class="eyebrow">VAŠ SLEDEĆI KORAK</p><h2 id="visit-title">Jednostavno.<br><em>Od prvog kontakta.</em></h2></div><button class="button button-primary" data-book>Isprobajte zakazivanje <span aria-hidden="true">↗</span></button></div><ol class="visit-steps"><li class="reveal"><span>01</span><h3>Izaberite pregled</h3><p>Pronađite opciju ili izaberite konsultaciju.</p></li><li class="reveal"><span>02</span><h3>Izaberite lekara</h3><p>Odaberite lekara ili prepustite izbor timu.</p></li><li class="reveal"><span>03</span><h3>Dogovorite posetu</h3><p>Za stvarni termin kontaktirajte ordinaciju.</p></li></ol></div></section>
     <section class="contact section shell" id="kontakt" aria-labelledby="contact-title"><div class="contact-copy reveal"><p class="eyebrow">KONTAKT</p><h2 id="contact-title">Tu smo za<br><em>vaš jasan pogled.</em></h2><p>Za informacije i stvarno zakazivanje,<br>kontaktirajte Očnu kuću Vizus.</p><a class="button button-dark" href="tel:+38134330505">Pozovite ordinaciju <span aria-hidden="true">↗</span></a></div><div class="contact-details reveal"><a class="contact-row" href="https://maps.google.com/?q=Svetozara+Markovica+31+Kragujevac" target="_blank" rel="noopener"><span>ADRESA</span><strong>Svetozara Markovića 31<br>Kragujevac</strong><b aria-hidden="true">↗</b></a><a class="contact-row" href="tel:+38134330505"><span>TELEFON</span><strong>034 / 330-505</strong><b aria-hidden="true">↗</b></a><a class="contact-row" href="tel:+381653305051"><span>MOBILNI</span><strong>065 / 330-5051</strong><b aria-hidden="true">↗</b></a><a class="contact-row" href="mailto:kgvizus@gmail.com"><span>EMAIL</span><strong>kgvizus@gmail.com</strong><b aria-hidden="true">↗</b></a></div></section>

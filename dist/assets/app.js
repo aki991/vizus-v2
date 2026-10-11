@@ -8,63 +8,17 @@
   const portrait = (doctor, lazy = true) => `<div class="portrait video-portrait"><img src="${escape(doctor.portret)}" alt="Portret iz dostavljenog videa: ${escape(doctor.ime)} · demo ime" ${lazy ? 'loading="lazy"' : ''} width="300" height="300"></div>`;
   $('#doctor-figures').innerHTML = C.doktori.map((d, i) => `<button class="lik" type="button" data-index="${i}" aria-label="Izaberite: ${escape(d.ime)}"><img src="${escape(d.figura)}" alt="AI lik za demo: ${escape(d.ime)}" loading="lazy" width="768" height="1024"></button>`).join('');
   $('#doctor-list').innerHTML = C.doktori.map((d, i) => `<button class="hud-stavka" type="button" data-index="${i}" aria-pressed="false">${portrait(d)}<span><span class="hud-ime">${escape(d.ime)}</span><span class="hud-spec">${escape(d.oblast)} · demo</span></span></button>`).join('');
-  $('#service-list').innerHTML = C.usluge.map(s => `<button class="service-row reveal" type="button" data-book data-service="${s.id}"><span class="service-number">${s.broj}</span><h3>${escape(s.naziv)}</h3><p>${escape(s.opis)}</p><span class="service-arrow" aria-hidden="true">↗</span></button>`).join('');
+  $('#service-list').innerHTML = C.usluge.map(s => `<article class="service-card reveal"><div class="service-image"><img src="${escape(s.slika)}" alt="${escape(s.alt)}" loading="lazy" width="1536" height="1024"><span class="service-number">${s.broj}</span></div><div class="service-copy"><h3>${escape(s.naziv)}</h3><p>${escape(s.opis)}</p><button class="service-link" type="button" data-book data-service="${escape(s.id)}">Izaberite pregled <span class="service-arrow" aria-hidden="true">↗</span></button></div></article>`).join('');
   $('#booking-services').innerHTML = C.usluge.map(s => `<button class="booking-service" type="button" data-service="${s.id}" aria-pressed="false">${escape(s.naziv)}<span aria-hidden="true">○</span></button>`).join('');
   $('#booking-doctor').innerHTML = '<option value="">Bilo koji lekar</option>' + C.doktori.map(d => `<option value="${d.id}">${escape(d.ime)} · demo profil</option>`).join('');
-  const videoConfig = C.videoOrdinacije;
-  if (videoConfig && videoConfig.src) {
-    const frame = $('#clinic-video-frame');
-    const video = document.createElement('video');
-    video.controls = false; video.playsInline = true; video.preload = 'metadata';
-    video.muted = true; video.defaultMuted = true; video.loop = true;
-    video.setAttribute('muted', ''); video.setAttribute('playsinline', '');
-    video.src = videoConfig.src; if (videoConfig.poster) video.poster = videoConfig.poster;
-    video.setAttribute('aria-label', 'Tim ispred Očne kuće Vizus');
-    video.textContent = 'Vaš pregledač ne podržava prikaz videa.';
-    frame.prepend(video);
-    const toggle = $('#clinic-video-toggle');
-    let inView = false, userPausedVideo = false;
-    toggle.hidden = false;
-    function syncVideoControl() {
-      const paused = video.paused;
-      toggle.setAttribute('aria-pressed', String(paused));
-      toggle.setAttribute('aria-label', paused ? 'Pokrenite video' : 'Pauzirajte video');
-      $('.video-toggle-icon', toggle).textContent = paused ? '▶' : 'Ⅱ';
-      $('.video-toggle-text', toggle).textContent = paused ? 'Pokreni video' : 'Pauziraj';
-    }
-    function resumeVideo() {
-      if (!inView || userPausedVideo || document.hidden) return;
-      const playback = video.play();
-      if (playback) playback.catch(syncVideoControl);
-    }
-    video.addEventListener('play', syncVideoControl);
-    video.addEventListener('pause', syncVideoControl);
-    toggle.addEventListener('click', () => {
-      userPausedVideo = !video.paused;
-      if (userPausedVideo) video.pause(); else resumeVideo();
-    });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(entries => {
-        const visible = entries[0].isIntersecting && entries[0].intersectionRatio >= .12;
-        if (visible && !inView && !userPausedVideo) video.currentTime = 0;
-        inView = visible;
-        if (inView) resumeVideo(); else video.pause();
-      }, {threshold: [0, .12]}).observe($('#video-ordinacije'));
-    } else {
-      // Older browsers retain the same scroll-triggered playback and manual control.
-      const checkVideoVisibility = () => {
-        const rect = frame.getBoundingClientRect();
-        inView = Math.min(rect.bottom, innerHeight) - Math.max(rect.top, 0) >= rect.height * .12;
-        if (inView) resumeVideo(); else video.pause();
-      };
-      window.addEventListener('scroll', checkVideoVisibility, {passive: true});
-      checkVideoVisibility();
-    }
-    document.addEventListener('visibilitychange', () => document.hidden ? video.pause() : resumeVideo());
-  }
-
   // The mobile menu uses normal anchor navigation; Escape restores focus.
   const header = $('#header'), menuButton = $('#menu-toggle');
+  function updateHeaderTone() {
+    header.classList.toggle('header-light', $('#pocetna').getBoundingClientRect().bottom <= header.offsetHeight + 24);
+  }
+  window.addEventListener('scroll', updateHeaderTone, {passive:true});
+  window.addEventListener('resize', updateHeaderTone);
+  updateHeaderTone();
   function menu(open) {
     header.classList.toggle('menu-open', open);
     menuButton.setAttribute('aria-expanded', String(open));
@@ -240,11 +194,13 @@
       figure.classList.toggle('aktivan', distance === 0);
       figure.classList.toggle('sporedan', distance > 0);
       figure.classList.toggle('daleko', distance > 1);
-      figure.style.left = `${50 + Math.sign(offset) * (distance === 1 ? 29 : 41)}%`;
-      figure.style.height = `${distance === 0 ? 76 : 58}%`;
-      figure.tabIndex = distance === 1 ? 0 : -1;
-      figure.setAttribute('aria-hidden', String(distance > 1));
-      figure.setAttribute('aria-label', `${distance === 0 ? 'Otvorite profil' : 'Izaberite'}: ${C.doktori[i].ime}`);
+      figure.style.left = `${50 + offset * 110}%`;
+      figure.style.height = '96%';
+      figure.tabIndex = distance === 0 ? 0 : -1;
+      figure.inert = distance !== 0;
+      figure.setAttribute('aria-hidden', String(distance !== 0));
+      figure.setAttribute('aria-pressed', String(distance === 0));
+      figure.setAttribute('aria-label', `Izaberite: ${C.doktori[i].ime}`);
     });
     doctorList.forEach((button, i) => {
       button.classList.toggle('aktivan', i === currentDoctor);
@@ -265,12 +221,16 @@
     $('#doctor-profile-image').innerHTML = `<img src="${escape(doctor.figura)}" alt="AI lik za demo: ${escape(doctor.ime)}" width="768" height="1024">`;
     profileDialog.showModal(); document.body.classList.add('modal-open');
   }
-  figures.forEach((button, i) => button.addEventListener('click', () => i === currentDoctor ? openProfile(button) : selectDoctor(i)));
+  figures.forEach((button, i) => button.addEventListener('click', () => selectDoctor(i)));
   doctorList.forEach((button, i) => button.addEventListener('click', () => selectDoctor(i)));
   $$('.strelica', stage).forEach(button => button.addEventListener('click', () => selectDoctor(currentDoctor + Number(button.dataset.direction))));
   stage.addEventListener('keydown', e => {
     if (!['ArrowLeft', 'ArrowRight'].includes(e.key) || /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
-    e.preventDefault(); selectDoctor(currentDoctor + (e.key === 'ArrowRight' ? 1 : -1));
+    e.preventDefault();
+    const fromFigure = e.target.closest('.lik'), fromList = e.target.closest('.hud-stavka');
+    selectDoctor(currentDoctor + (e.key === 'ArrowRight' ? 1 : -1));
+    if (fromFigure) figures[currentDoctor].focus({preventScroll:true});
+    else if (fromList) doctorList[currentDoctor].focus({preventScroll:true});
   });
   let touchStart = null;
   $('#doctor-scene').addEventListener('touchstart', e => { touchStart = {x:e.touches[0].clientX, y:e.touches[0].clientY}; }, {passive:true});

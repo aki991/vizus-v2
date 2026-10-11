@@ -1,0 +1,29 @@
+{
+  "mode": "Built-in ImageGen",
+  "images": [
+    {
+      "id": "pregled",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape photo for a Serbian ophthalmology clinic demo service card. Bright white contemporary examination room with subtle deep green accents, soft daylight, clean realistic professional editorial photography, close composition, no logos, no overlaid text, no watermarks. This is an illustrative AI image, not a real clinic or doctor. An adult female patient comfortably rests chin on a slit-lamp chin rest during a routine ophthalmology exam. A doctor in white coat operates the slit lamp from the opposite side. Correct plausible instrument structure, gentle calm interaction, faces natural, landscape 3:2 composition.",
+      "path": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\dist\\assets\\usluga-pregled.webp",
+      "original": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\media-source\\service-images\\usluga-pregled.png"
+    },
+    {
+      "id": "dioptrija",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape photo for a Serbian ophthalmology clinic demo service card. Bright white contemporary examination room with subtle deep green accents, soft daylight, clean realistic professional editorial photography, close composition, no logos, no overlaid text, no watermarks. This is an illustrative AI image, not a real clinic or doctor. Close editorial view of a female adult patient's face behind a modern white ophthalmic phoropter for measuring vision and choosing spectacle prescription. Instrument viewed from doctor side, eye apertures aligned naturally. White wall, small blurred green detail, landscape 3:2.",
+      "path": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\dist\\assets\\usluga-dioptrija.webp",
+      "original": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\media-source\\service-images\\usluga-dioptrija.png"
+    },
+    {
+      "id": "pritisak",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape photo for a Serbian ophthalmology clinic demo service card. Bright white contemporary examination room with subtle deep green accents, soft daylight, clean realistic professional editorial photography, close composition, no logos, no overlaid text, no watermarks. This is an illustrative AI image, not a real clinic or doctor. Close-up of a contemporary white non-contact air-puff tonometer in a bright ophthalmology clinic. Adult patient sitting with chin on rest, looking into device, doctor hand adjusting control. No needle, no invasive contact, plausible elegant medical equipment, landscape 3:2.",
+      "path": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\dist\\assets\\usluga-pritisak.webp",
+      "original": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\media-source\\service-images\\usluga-pritisak.png"
+    },
+    {
+      "id": "konsultacija",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape photo for a Serbian ophthalmology clinic demo service card. Bright white contemporary examination room with subtle deep green accents, soft daylight, clean realistic professional editorial photography, close composition, no logos, no overlaid text, no watermarks. This is an illustrative AI image, not a real clinic or doctor. Warm natural eye care consultation: mature female patient wearing glasses seated across from a female ophthalmologist in a white coat at a clean white desk. Doctor listening and explaining a simple abstract printout without readable text. Subtle green plant, airy clinic, landscape 3:2.",
+      "path": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\dist\\assets\\usluga-konsultacija.webp",
+      "original": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\media-source\\service-images\\usluga-konsultacija.png"
+    }
+  ]
+}

@@ -48,11 +48,11 @@ window.ORDINACIJA = {
       ]
     }
   ],
-  videoOrdinacije: { src: 'assets/vizus-klinika.mp4', poster: 'assets/video-poster.webp' },
   usluge: [
-    { id: 'pregled', naziv: 'Oftalmološki pregled', opis: 'Izaberite pregled kao prvi korak u brizi o svom vidu.', broj: '01' },
-    { id: 'kontrola', naziv: 'Kontrola vida', opis: 'Nastavite brigu o vidu uz dogovor o sledećoj poseti.', broj: '02' },
-    { id: 'konsultacija', naziv: 'Konsultacija', opis: 'Niste sigurni koji pregled da izaberete? Počnite razgovorom.', broj: '03' }
+    { id: 'pregled', naziv: 'Oftalmološki pregled', opis: 'Razgovor o vašem vidu i pregled očiju, uz jasno objašnjenje nalaza i dogovor o narednim koracima.', broj: '01', slika: 'assets/usluga-pregled.webp', alt: 'Ilustracija oftalmološkog pregleda na biomikroskopu' },
+    { id: 'dioptrija', naziv: 'Određivanje dioptrije', opis: 'Provera oštrine vida i procena odgovarajuće korekcije, prilagođene čitanju, radu i vašim svakodnevnim potrebama.', broj: '02', slika: 'assets/usluga-dioptrija.webp', alt: 'Ilustracija određivanja dioptrije pomoću foroptera' },
+    { id: 'pritisak', naziv: 'Merenje očnog pritiska', opis: 'Provera očnog pritiska kao deo brige o zdravlju očiju, uz tumačenje rezultata i preporuku daljih kontrola.', broj: '03', slika: 'assets/usluga-pritisak.webp', alt: 'Ilustracija merenja očnog pritiska beskontaktnim tonometrom' },
+    { id: 'konsultacija', naziv: 'Kontrole i konsultacije', opis: 'Praćenje promena vida i razgovor o prethodnim nalazima. Prostor za vaša pitanja i plan sledeće posete.', broj: '04', slika: 'assets/usluga-konsultacija.webp', alt: 'Ilustracija razgovora pacijentkinje sa oftalmologom' }
   ],
   // Ilustrativni raspored služi isključivo demonstraciji, nije radno vreme Vizusa.
   demo: { interval: 30, hours: [{ dani: [1, 2, 3, 4, 5], od: '09:00', do: '17:00' }] }
