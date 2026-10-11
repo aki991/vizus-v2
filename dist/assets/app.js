@@ -5,9 +5,9 @@
   const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
   const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
   document.documentElement.classList.add('js');
-  const portrait = (doctor, lazy = true) => `<div class="portrait ${doctor.slika}"><img src="assets/lekari.webp" alt="AI portret za demo: ${escape(doctor.ime)}" ${lazy ? 'loading="lazy"' : ''} width="1584" height="992"></div>`;
+  const portrait = (doctor, lazy = true) => `<div class="portrait video-portrait"><img src="${escape(doctor.portret)}" alt="Portret iz dostavljenog videa: ${escape(doctor.ime)} · demo ime" ${lazy ? 'loading="lazy"' : ''} width="300" height="300"></div>`;
   $('#doctor-figures').innerHTML = C.doktori.map((d, i) => `<button class="lik" type="button" data-index="${i}" aria-label="Izaberite: ${escape(d.ime)}"><img src="${escape(d.figura)}" alt="AI lik za demo: ${escape(d.ime)}" loading="lazy" width="768" height="1024"></button>`).join('');
-  $('#doctor-list').innerHTML = C.doktori.map((d, i) => `<button class="hud-stavka" type="button" data-index="${i}" aria-pressed="false">${portrait(d)}<span><span class="hud-ime">${escape(d.ime)}</span><span class="hud-spec">Demo profil</span></span></button>`).join('');
+  $('#doctor-list').innerHTML = C.doktori.map((d, i) => `<button class="hud-stavka" type="button" data-index="${i}" aria-pressed="false">${portrait(d)}<span><span class="hud-ime">${escape(d.ime)}</span><span class="hud-spec">${escape(d.oblast)} · demo</span></span></button>`).join('');
   $('#service-list').innerHTML = C.usluge.map(s => `<button class="service-row reveal" type="button" data-book data-service="${s.id}"><span class="service-number">${s.broj}</span><h3>${escape(s.naziv)}</h3><p>${escape(s.opis)}</p><span class="service-arrow" aria-hidden="true">↗</span></button>`).join('');
   $('#booking-services').innerHTML = C.usluge.map(s => `<button class="booking-service" type="button" data-service="${s.id}" aria-pressed="false">${escape(s.naziv)}<span aria-hidden="true">○</span></button>`).join('');
   $('#booking-doctor').innerHTML = '<option value="">Bilo koji lekar</option>' + C.doktori.map(d => `<option value="${d.id}">${escape(d.ime)} · demo profil</option>`).join('');
@@ -17,7 +17,7 @@
     const title = document.createElement('h2');
     title.id = 'video-title'; title.className = 'video-accessible-title'; title.textContent = 'Video Očne kuće Vizus';
     const video = document.createElement('video');
-    video.controls = true; video.playsInline = true; video.preload = 'none';
+    video.controls = true; video.playsInline = true; video.preload = 'metadata';
     video.src = videoConfig.src; if (videoConfig.poster) video.poster = videoConfig.poster;
     video.setAttribute('aria-label', 'Video Očne kuće Vizus');
     video.textContent = 'Vaš pregledač ne podržava prikaz videa.';
@@ -200,9 +200,11 @@
       const distance = Math.abs(offset);
       figure.classList.toggle('aktivan', distance === 0);
       figure.classList.toggle('sporedan', distance > 0);
+      figure.classList.toggle('daleko', distance > 1);
       figure.style.left = `${50 + Math.sign(offset) * (distance === 1 ? 29 : 41)}%`;
       figure.style.height = `${distance === 0 ? 76 : 58}%`;
-      figure.tabIndex = distance === 0 ? -1 : 0;
+      figure.tabIndex = distance === 1 ? 0 : -1;
+      figure.setAttribute('aria-hidden', String(distance > 1));
       figure.setAttribute('aria-label', `${distance === 0 ? 'Otvorite profil' : 'Izaberite'}: ${C.doktori[i].ime}`);
     });
     doctorList.forEach((button, i) => {
@@ -211,6 +213,8 @@
     });
     $('#selected-doctor-name').textContent = doctor.ime;
     $('#selected-doctor-bio').textContent = doctor.bio;
+    $('#selected-doctor-area').textContent = doctor.oblast;
+    $('#selected-doctor-topics').innerHTML = doctor.oblasti.map(area => `<span class="cip">${escape(area)}</span>`).join('');
     $('#stage-book').dataset.doctor = doctor.id;
     $('#doctor-current').textContent = String(currentDoctor + 1).padStart(2, '0');
   }
@@ -218,7 +222,7 @@
     const doctor = C.doktori[currentDoctor];
     profileTrigger = button;
     $('#doctor-profile-title').textContent = doctor.ime;
-    $('#doctor-profile-bio').textContent = doctor.bio;
+    $('#doctor-profile-bio').innerHTML = `<p class="profile-intro">${escape(doctor.bio)}</p>` + doctor.profil.map(section => `<section class="profile-section"><h3>${escape(section.naslov)}</h3><p>${escape(section.tekst)}</p></section>`).join('');
     $('#doctor-profile-image').innerHTML = `<img src="${escape(doctor.figura)}" alt="AI lik za demo: ${escape(doctor.ime)}" width="768" height="1024">`;
     profileDialog.showModal(); document.body.classList.add('modal-open');
   }

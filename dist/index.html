@@ -77,7 +77,8 @@
         <div class="bina-info" id="doctor-info">
           <div aria-live="polite" aria-atomic="true"><p class="bi-titula">DEMO PROFIL</p><h3 class="bi-ime" id="selected-doctor-name"></h3><p class="bi-bio" id="selected-doctor-bio"></p></div>
           <div class="bi-dugmad"><button class="button button-primary" data-book id="stage-book">Zakažite pregled <span aria-hidden="true">↗</span></button><button class="button button-ghost" id="doctor-profile-open">Ceo profil</button></div>
-          <p class="stage-demo-note">AI likovi za demo. Stvarni profili biće dodati naknadno.</p>
+          <p id="selected-doctor-area" class="doctor-area"></p><div id="selected-doctor-topics" class="bi-oblasti"></div>
+          <p class="stage-demo-note">Likovi iz videa · imena i opisi su demo sadržaj.</p>
         </div>
         <div class="bina-hud"><p class="hud-naslov">Izaberite lekara</p><div id="doctor-list" role="group" aria-label="Lekari u demo prikazu"></div></div>
         <div class="bina-dno"><button class="strelica" type="button" data-direction="-1" aria-label="Prethodni lekar">←</button><span class="brojac"><b id="doctor-current">01</b> / <span id="doctor-total">02</span></span><button class="strelica" type="button" data-direction="1" aria-label="Sledeći lekar">→</button></div>
@@ -109,7 +110,7 @@
   <dialog class="doctor-profile-dialog" id="doctor-profile-dialog" aria-labelledby="doctor-profile-title">
     <button class="dialog-close" id="doctor-profile-close" aria-label="Zatvorite profil">×</button>
     <div class="profile-image" id="doctor-profile-image"></div>
-    <div class="profile-content"><p class="eyebrow">VIZUS · DEMO PROFIL</p><h2 id="doctor-profile-title"></h2><p id="doctor-profile-bio"></p><p class="profile-notice">Ovo je ilustrativni profil sa AI likom. Ime, biografija i stručne kvalifikacije stvarnog lekara dodaju se nakon potvrde ordinacije.</p><button class="button button-primary" id="profile-book">Izaberite ovog lekara <span aria-hidden="true">↗</span></button></div>
+    <div class="profile-content"><p class="eyebrow">VIZUS · ILUSTRATIVNI PROFIL</p><h2 id="doctor-profile-title"></h2><div id="doctor-profile-bio"></div><p class="profile-notice">Portret je pripremljen iz dostavljenog videa. Ime, opis i oblasti rada su izmišljeni za demo prezentaciju. Stvarne podatke i kvalifikacije potvrđuje ordinacija pre javnog korišćenja.</p><button class="button button-primary" id="profile-book">Izaberite ovog lekara <span aria-hidden="true">↗</span></button></div>
   </dialog>
   <noscript><div class="noscript-message">Za animaciju i demo zakazivanje uključite JavaScript. Za stvarni pregled pozovite <a href="tel:+38134330505">034 / 330-505</a>.</div></noscript>
 </body>

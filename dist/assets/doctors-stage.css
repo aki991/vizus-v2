@@ -131,6 +131,12 @@
 .profile-content h2{font-size:49px;margin-bottom:22px}.profile-content>p:not(.eyebrow){font-size:12px;line-height:1.9;color:#bdd3d3}
 .profile-content .profile-notice{border-top:1px solid #8bcfd333;margin-top:23px;padding-top:22px;color:#91b1b2!important;font-size:10px!important}
 .profile-content .button{margin-top:25px;font-size:11px}
+.hud-stavka .video-portrait img{width:100%;height:100%;left:0;object-fit:cover}
+.doctor-area{font-size:10px;letter-spacing:.08em;color:var(--aqua)}
+.bina-info{gap:15px}.bi-oblasti .cip{font-size:10px;padding:7px 9px;line-height:1.3}
+.profile-intro{font-size:14px;line-height:1.9;color:#d7e8e7;margin-bottom:28px}
+.profile-section{margin:0 0 26px}.profile-section h3{font-family:var(--serif);font-size:26px;line-height:1.25;color:var(--ivory);margin:0 0 10px}
+.profile-section p{font-size:13px;line-height:1.95;color:#bdd3d3}
 @media(max-width:1000px){
   #doctor-stage{height:auto;min-height:0;display:grid}
   .bina-scena{position:relative;height:600px;min-height:0;overflow:hidden}
