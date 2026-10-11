@@ -15,6 +15,7 @@
   <link rel="preload" href="assets/iris.webp" as="image">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/doctors-stage.css">
+  <link rel="stylesheet" href="assets/video-section.css">
   <script src="klijenti/vizus/config.js" defer></script>
   <script src="assets/booking-availability.js" defer></script>
   <script src="assets/app.js" defer></script>
@@ -61,10 +62,11 @@
       <div class="hero-bottom shell"><a href="#o-nama" class="explore"><span class="scroll-line" aria-hidden="true"></span> Istražite Vizus</a><p class="demo-caption">AI vizueli · demo predlog</p></div>
     </section>
     <section class="clinic-video" id="video-ordinacije" aria-labelledby="video-title">
-      <div class="shell">
-        <div class="video-frame" id="clinic-video-frame">
-          <div class="video-placeholder"><span class="video-format" aria-hidden="true">16:9</span><p class="eyebrow">OČNA KUĆA VIZUS</p><h2 id="video-title">Upoznajte naš prostor.</h2><p class="video-status">Video uskoro</p></div>
-        </div>
+      <div class="video-frame" id="clinic-video-frame">
+        <div class="video-poster" aria-hidden="true"></div>
+        <div class="video-shade" aria-hidden="true"></div>
+        <div class="video-brand"><h2 id="video-title">VIZUS</h2><p>Posvećeni zdravlju vaših očiju</p></div>
+        <button class="video-toggle" id="clinic-video-toggle" type="button" aria-label="Pokrenite video" aria-pressed="true" hidden><span class="video-toggle-icon" aria-hidden="true">▶</span><span class="video-toggle-text">Pokreni video</span></button>
       </div>
     </section>
     <section class="doctors-stage" id="lekari" aria-labelledby="doctors-title">

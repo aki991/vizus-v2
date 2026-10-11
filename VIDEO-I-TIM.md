@@ -4,7 +4,9 @@ Video je dostavio korisnik. Izvor: `Doctors_walking_toward_clinic_en…_20261011
 
 Ulaz: 1920 × 1080, 24 fps, trajanje 8,00 s. Izbačen je uvod do 1,50 s, gde su sva četiri lika potpuno vidljiva bez početnog pretapanja. Izlaz: 1920 × 1080, 24 fps, 6,50 s, H.264 CRF 18, preset slow, yuv420p, AAC 160 kb/s, faststart. Blago smanjenje šuma: hqdn3d=0.65:0.65:1.5:1.5; blaga oštrina: unsharp=3:3:0.25:3:3:0. Nije rađeno povećavanje rezolucije niti uklanjanje AI promena između kadrova.
 
-`dist/assets/video-poster.webp` je prvi kadar obrađenog videa. Video ima kontrole i ne kreće automatski. Originalni klip nije menjan.
+`dist/assets/video-poster.webp` je prvi kadar obrađenog videa. Originalni klip nije menjan.
+
+Video sekcija prati korisnikov referentni `venus.mp4`: zauzima celu širinu i 100svh bez margina, okvira ili razmaka između heroja i tima. Video pokriva sekciju pomoću object-fit: cover. Preko njega je naslov VIZUS sa tekstom „Posvećeni zdravlju vaših očiju“. Počinje automatski bez zvuka kada je vidljivo bar 12% sekcije, ponavlja se i pauzira van vidnog polja ili pri sakrivanju taba. Kada se sekcija ponovo otkrije, počinje iz zajedničkog prvog kadra. Ručna pauza ima prednost nad automatskim pokretanjem. Referentni Venus video nije ugrađen u sajt.
 
 ## Podaci o doktorima
 

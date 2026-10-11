@@ -14,14 +14,53 @@
   const videoConfig = C.videoOrdinacije;
   if (videoConfig && videoConfig.src) {
     const frame = $('#clinic-video-frame');
-    const title = document.createElement('h2');
-    title.id = 'video-title'; title.className = 'video-accessible-title'; title.textContent = 'Video Očne kuće Vizus';
     const video = document.createElement('video');
-    video.controls = true; video.playsInline = true; video.preload = 'metadata';
+    video.controls = false; video.playsInline = true; video.preload = 'metadata';
+    video.muted = true; video.defaultMuted = true; video.loop = true;
+    video.setAttribute('muted', ''); video.setAttribute('playsinline', '');
     video.src = videoConfig.src; if (videoConfig.poster) video.poster = videoConfig.poster;
-    video.setAttribute('aria-label', 'Video Očne kuće Vizus');
+    video.setAttribute('aria-label', 'Tim ispred Očne kuće Vizus');
     video.textContent = 'Vaš pregledač ne podržava prikaz videa.';
-    frame.replaceChildren(title, video);
+    frame.prepend(video);
+    const toggle = $('#clinic-video-toggle');
+    let inView = false, userPausedVideo = false;
+    toggle.hidden = false;
+    function syncVideoControl() {
+      const paused = video.paused;
+      toggle.setAttribute('aria-pressed', String(paused));
+      toggle.setAttribute('aria-label', paused ? 'Pokrenite video' : 'Pauzirajte video');
+      $('.video-toggle-icon', toggle).textContent = paused ? '▶' : 'Ⅱ';
+      $('.video-toggle-text', toggle).textContent = paused ? 'Pokreni video' : 'Pauziraj';
+    }
+    function resumeVideo() {
+      if (!inView || userPausedVideo || document.hidden) return;
+      const playback = video.play();
+      if (playback) playback.catch(syncVideoControl);
+    }
+    video.addEventListener('play', syncVideoControl);
+    video.addEventListener('pause', syncVideoControl);
+    toggle.addEventListener('click', () => {
+      userPausedVideo = !video.paused;
+      if (userPausedVideo) video.pause(); else resumeVideo();
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        const visible = entries[0].isIntersecting && entries[0].intersectionRatio >= .12;
+        if (visible && !inView && !userPausedVideo) video.currentTime = 0;
+        inView = visible;
+        if (inView) resumeVideo(); else video.pause();
+      }, {threshold: [0, .12]}).observe($('#video-ordinacije'));
+    } else {
+      // Older browsers retain the same scroll-triggered playback and manual control.
+      const checkVideoVisibility = () => {
+        const rect = frame.getBoundingClientRect();
+        inView = Math.min(rect.bottom, innerHeight) - Math.max(rect.top, 0) >= rect.height * .12;
+        if (inView) resumeVideo(); else video.pause();
+      };
+      window.addEventListener('scroll', checkVideoVisibility, {passive: true});
+      checkVideoVisibility();
+    }
+    document.addEventListener('visibilitychange', () => document.hidden ? video.pause() : resumeVideo());
   }
 
   // The mobile menu uses normal anchor navigation; Escape restores focus.
