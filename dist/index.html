@@ -14,6 +14,7 @@
   <link rel="preload" href="assets/ordinacija.webp" as="image">
   <link rel="preload" href="assets/iris.webp" as="image">
   <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/doctors-stage.css">
   <script src="klijenti/vizus/config.js" defer></script>
   <script src="assets/booking-availability.js" defer></script>
   <script src="assets/app.js" defer></script>
@@ -59,13 +60,28 @@
       </div>
       <div class="hero-bottom shell"><a href="#o-nama" class="explore"><span class="scroll-line" aria-hidden="true"></span> Istražite Vizus</a><p class="demo-caption">AI vizueli · demo predlog</p></div>
     </section>
-    <section class="quick-section shell" aria-labelledby="quick-title">
-      <div class="quick-booking">
-        <div class="quick-title"><span class="small-rule"></span><h2 id="quick-title">Izaberite svog doktora</h2><p>Vaš prvi korak ka jasnijem pogledu.</p></div>
-        <div class="quick-options" id="quick-options" role="group" aria-label="Izaberite lekara za demo"></div>
-        <button class="button button-dark" id="quick-next">Nastavite <span aria-hidden="true">↗</span></button>
+    <section class="clinic-video" id="video-ordinacije" aria-labelledby="video-title">
+      <div class="shell">
+        <div class="video-frame" id="clinic-video-frame">
+          <div class="video-placeholder"><span class="video-format" aria-hidden="true">16:9</span><p class="eyebrow">OČNA KUĆA VIZUS</p><h2 id="video-title">Upoznajte naš prostor.</h2><p class="video-status">Video uskoro</p></div>
+        </div>
       </div>
-      <div class="quick-meta"><a href="https://maps.google.com/?q=Svetozara+Markovica+31+Kragujevac" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/></svg>Svetozara Markovića 31, Kragujevac</a><a href="tel:+38134330505"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 3 3 5-3 3c2 3 3 4 6 6l3-3 5 3c-1 7-7 4-12 0S1 4 7 3Z"/></svg>034 / 330-505</a><span>Demo izbor · AI portreti</span></div>
+    </section>
+    <section class="doctors-stage" id="lekari" aria-labelledby="doctors-title">
+      <div id="doctor-stage" class="bina" role="group" aria-roledescription="karusel" aria-label="Izbor doktora">
+        <div class="bina-scena" id="doctor-scene">
+          <div class="bina-pozadina" aria-hidden="true"></div><div class="bina-krug" aria-hidden="true"></div><div class="bina-tlo" aria-hidden="true"></div>
+          <div id="doctor-figures"></div>
+          <div class="bina-glava"><p class="eyebrow">NAŠ TIM</p><h2 id="doctors-title">Izaberite svog doktora.</h2><p class="hint hint-desktop">Kliknite na lekara ili koristite ← →</p><p class="hint hint-mobile">Prevucite levo ili desno</p></div>
+        </div>
+        <div class="bina-info" id="doctor-info">
+          <div aria-live="polite" aria-atomic="true"><p class="bi-titula">DEMO PROFIL</p><h3 class="bi-ime" id="selected-doctor-name"></h3><p class="bi-bio" id="selected-doctor-bio"></p></div>
+          <div class="bi-dugmad"><button class="button button-primary" data-book id="stage-book">Zakažite pregled <span aria-hidden="true">↗</span></button><button class="button button-ghost" id="doctor-profile-open">Ceo profil</button></div>
+          <p class="stage-demo-note">AI likovi za demo. Stvarni profili biće dodati naknadno.</p>
+        </div>
+        <div class="bina-hud"><p class="hud-naslov">Izaberite lekara</p><div id="doctor-list" role="group" aria-label="Lekari u demo prikazu"></div></div>
+        <div class="bina-dno"><button class="strelica" type="button" data-direction="-1" aria-label="Prethodni lekar">←</button><span class="brojac"><b id="doctor-current">01</b> / <span id="doctor-total">02</span></span><button class="strelica" type="button" data-direction="1" aria-label="Sledeći lekar">→</button></div>
+      </div>
     </section>
     <section class="about section shell" id="o-nama" aria-labelledby="about-title">
       <div class="about-heading reveal"><p class="eyebrow">O NAMA</p><h2 id="about-title">Dve generacije.<br><em>Jedan cilj — zdrav vid.</em></h2></div>
@@ -73,10 +89,6 @@
     </section>
     <section class="services section" id="pregledi" aria-labelledby="services-title">
       <div class="shell"><div class="section-heading reveal"><div><p class="eyebrow">PREGLEDI</p><h2 id="services-title">Vašem vidu.<br><em>Sa pažnjom.</em></h2></div><p>Sve vrste oftalmoloških pregleda.<br>Za informacije o konkretnom pregledu, pozovite nas.</p></div><div class="service-list" id="service-list"></div><p class="section-note">Izbor pregleda u ovoj verziji služi demonstraciji sajta.</p></div>
-    </section>
-    <section class="doctors section shell" id="lekari" aria-labelledby="doctors-title">
-      <div class="section-heading reveal"><div><p class="eyebrow">IZBOR LEKARA</p><h2 id="doctors-title">Poverenje počinje<br><em>upoznavanjem.</em></h2></div><p>Izaberite lekara i isprobajte<br>jednostavno zakazivanje.</p></div>
-      <div class="doctor-grid" id="doctor-grid"></div><p class="section-note">Prikazani likovi su AI generisani za demo. Imena i biografije stvarnih lekara dodaju se nakon potvrde ordinacije.</p>
     </section>
     <section class="visit section" aria-labelledby="visit-title"><div class="shell"><div class="section-heading reveal"><div><p class="eyebrow">VAŠ SLEDEĆI KORAK</p><h2 id="visit-title">Jednostavno.<br><em>Od prvog kontakta.</em></h2></div><button class="button button-primary" data-book>Isprobajte zakazivanje <span aria-hidden="true">↗</span></button></div><ol class="visit-steps"><li class="reveal"><span>01</span><h3>Izaberite pregled</h3><p>Pronađite opciju ili izaberite konsultaciju.</p></li><li class="reveal"><span>02</span><h3>Izaberite lekara</h3><p>Odaberite lekara ili prepustite izbor timu.</p></li><li class="reveal"><span>03</span><h3>Dogovorite posetu</h3><p>Za stvarni termin kontaktirajte ordinaciju.</p></li></ol></div></section>
     <section class="contact section shell" id="kontakt" aria-labelledby="contact-title"><div class="contact-copy reveal"><p class="eyebrow">KONTAKT</p><h2 id="contact-title">Tu smo za<br><em>vaš jasan pogled.</em></h2><p>Za informacije i stvarno zakazivanje,<br>kontaktirajte Očnu kuću Vizus.</p><a class="button button-dark" href="tel:+38134330505">Pozovite ordinaciju <span aria-hidden="true">↗</span></a></div><div class="contact-details reveal"><a class="contact-row" href="https://maps.google.com/?q=Svetozara+Markovica+31+Kragujevac" target="_blank" rel="noopener"><span>ADRESA</span><strong>Svetozara Markovića 31<br>Kragujevac</strong><b aria-hidden="true">↗</b></a><a class="contact-row" href="tel:+38134330505"><span>TELEFON</span><strong>034 / 330-505</strong><b aria-hidden="true">↗</b></a><a class="contact-row" href="tel:+381653305051"><span>MOBILNI</span><strong>065 / 330-5051</strong><b aria-hidden="true">↗</b></a><a class="contact-row" href="mailto:kgvizus@gmail.com"><span>EMAIL</span><strong>kgvizus@gmail.com</strong><b aria-hidden="true">↗</b></a></div></section>
@@ -93,6 +105,11 @@
       <p id="booking-error" class="booking-error" role="alert"></p><div class="booking-actions"><button type="button" class="button button-light" id="booking-back" hidden>← Nazad</button><button type="submit" class="button button-dark" id="booking-next">Nastavite ↗</button></div>
     </form>
     <div class="booking-success" id="booking-success" hidden><span class="success-mark" aria-hidden="true">✓</span><h3 tabindex="-1">Demonstracija završena.</h3><p>Prošli ste kroz proces izbora pregleda. Termin nije rezervisan i zahtev nije poslat.</p><a class="button button-dark" href="tel:+38134330505">Pozovite za stvarni termin ↗</a><button class="text-link" id="booking-restart">Isprobajte ponovo</button></div>
+  </dialog>
+  <dialog class="doctor-profile-dialog" id="doctor-profile-dialog" aria-labelledby="doctor-profile-title">
+    <button class="dialog-close" id="doctor-profile-close" aria-label="Zatvorite profil">×</button>
+    <div class="profile-image" id="doctor-profile-image"></div>
+    <div class="profile-content"><p class="eyebrow">VIZUS · DEMO PROFIL</p><h2 id="doctor-profile-title"></h2><p id="doctor-profile-bio"></p><p class="profile-notice">Ovo je ilustrativni profil sa AI likom. Ime, biografija i stručne kvalifikacije stvarnog lekara dodaju se nakon potvrde ordinacije.</p><button class="button button-primary" id="profile-book">Izaberite ovog lekara <span aria-hidden="true">↗</span></button></div>
   </dialog>
   <noscript><div class="noscript-message">Za animaciju i demo zakazivanje uključite JavaScript. Za stvarni pregled pozovite <a href="tel:+38134330505">034 / 330-505</a>.</div></noscript>
 </body>

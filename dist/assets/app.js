@@ -6,16 +6,23 @@
   const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
   document.documentElement.classList.add('js');
   const portrait = (doctor, lazy = true) => `<div class="portrait ${doctor.slika}"><img src="assets/lekari.webp" alt="AI portret za demo: ${escape(doctor.ime)}" ${lazy ? 'loading="lazy"' : ''} width="1584" height="992"></div>`;
-  let quickDoctor = '';
-  $('#quick-options').innerHTML = C.doktori.map(d => `<button class="quick-doctor" type="button" data-doctor="${d.id}" aria-pressed="false">${portrait(d)}<span><b>${escape(d.ime)}</b><small>AI demo portret</small></span><span class="quick-check" aria-hidden="true">↗</span></button>`).join('');
-  $('#doctor-grid').innerHTML = C.doktori.map(d => `<article class="doctor-card reveal">${portrait(d)}<div class="doctor-copy"><p class="eyebrow">DEMO PROFIL</p><h3>${escape(d.ime)}</h3><p>Ilustrativni profil za prikaz izbora lekara i zakazivanja.</p><button class="text-link" data-book data-doctor="${d.id}">Izaberite lekara <span aria-hidden="true">↗</span></button></div></article>`).join('');
+  $('#doctor-figures').innerHTML = C.doktori.map((d, i) => `<button class="lik" type="button" data-index="${i}" aria-label="Izaberite: ${escape(d.ime)}"><img src="${escape(d.figura)}" alt="AI lik za demo: ${escape(d.ime)}" loading="lazy" width="768" height="1024"></button>`).join('');
+  $('#doctor-list').innerHTML = C.doktori.map((d, i) => `<button class="hud-stavka" type="button" data-index="${i}" aria-pressed="false">${portrait(d)}<span><span class="hud-ime">${escape(d.ime)}</span><span class="hud-spec">Demo profil</span></span></button>`).join('');
   $('#service-list').innerHTML = C.usluge.map(s => `<button class="service-row reveal" type="button" data-book data-service="${s.id}"><span class="service-number">${s.broj}</span><h3>${escape(s.naziv)}</h3><p>${escape(s.opis)}</p><span class="service-arrow" aria-hidden="true">↗</span></button>`).join('');
   $('#booking-services').innerHTML = C.usluge.map(s => `<button class="booking-service" type="button" data-service="${s.id}" aria-pressed="false">${escape(s.naziv)}<span aria-hidden="true">○</span></button>`).join('');
   $('#booking-doctor').innerHTML = '<option value="">Bilo koji lekar</option>' + C.doktori.map(d => `<option value="${d.id}">${escape(d.ime)} · demo profil</option>`).join('');
-  $$('.quick-doctor').forEach(button => button.addEventListener('click', () => {
-    quickDoctor = quickDoctor === button.dataset.doctor ? '' : button.dataset.doctor;
-    $$('.quick-doctor').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.doctor === quickDoctor)));
-  }));
+  const videoConfig = C.videoOrdinacije;
+  if (videoConfig && videoConfig.src) {
+    const frame = $('#clinic-video-frame');
+    const title = document.createElement('h2');
+    title.id = 'video-title'; title.className = 'video-accessible-title'; title.textContent = 'Video Očne kuće Vizus';
+    const video = document.createElement('video');
+    video.controls = true; video.playsInline = true; video.preload = 'none';
+    video.src = videoConfig.src; if (videoConfig.poster) video.poster = videoConfig.poster;
+    video.setAttribute('aria-label', 'Video Očne kuće Vizus');
+    video.textContent = 'Vaš pregledač ne podržava prikaz videa.';
+    frame.replaceChildren(title, video);
+  }
 
   // The mobile menu uses normal anchor navigation; Escape restores focus.
   const header = $('#header'), menuButton = $('#menu-toggle');
@@ -84,7 +91,6 @@
   }
   function closeBooking() { dialog.close(); }
   $$('[data-book]').forEach(button => button.addEventListener('click', () => openBooking(button, button.dataset.doctor || '', button.dataset.service || '')));
-  $('#quick-next').addEventListener('click', e => openBooking(e.currentTarget, quickDoctor));
   $('#dialog-close').addEventListener('click', closeBooking);
   dialog.addEventListener('click', e => {
     const rect = dialog.getBoundingClientRect();
@@ -180,4 +186,69 @@
   });
   $('#booking-back').addEventListener('click', () => showStep(Math.max(1, step - 1)));
   $('#booking-restart').addEventListener('click', () => { resetState(); $('#step-one-heading').focus({ preventScroll: true }); });
+
+  // Doctor stage adapted from the user's Claude template: figures, info, list and arrows.
+  const stage = $('#doctor-stage'), figures = $$('.lik', stage), doctorList = $$('.hud-stavka', stage);
+  const profileDialog = $('#doctor-profile-dialog');
+  let currentDoctor = 0, profileTrigger = null;
+  function selectDoctor(index) {
+    currentDoctor = (index + C.doktori.length) % C.doktori.length;
+    const doctor = C.doktori[currentDoctor];
+    figures.forEach((figure, i) => {
+      const relative = (i - currentDoctor + figures.length) % figures.length;
+      const offset = relative <= (figures.length - 1) / 2 ? relative : relative - figures.length;
+      const distance = Math.abs(offset);
+      figure.classList.toggle('aktivan', distance === 0);
+      figure.classList.toggle('sporedan', distance > 0);
+      figure.style.left = `${50 + Math.sign(offset) * (distance === 1 ? 29 : 41)}%`;
+      figure.style.height = `${distance === 0 ? 76 : 58}%`;
+      figure.tabIndex = distance === 0 ? -1 : 0;
+      figure.setAttribute('aria-label', `${distance === 0 ? 'Otvorite profil' : 'Izaberite'}: ${C.doktori[i].ime}`);
+    });
+    doctorList.forEach((button, i) => {
+      button.classList.toggle('aktivan', i === currentDoctor);
+      button.setAttribute('aria-pressed', String(i === currentDoctor));
+    });
+    $('#selected-doctor-name').textContent = doctor.ime;
+    $('#selected-doctor-bio').textContent = doctor.bio;
+    $('#stage-book').dataset.doctor = doctor.id;
+    $('#doctor-current').textContent = String(currentDoctor + 1).padStart(2, '0');
+  }
+  function openProfile(button) {
+    const doctor = C.doktori[currentDoctor];
+    profileTrigger = button;
+    $('#doctor-profile-title').textContent = doctor.ime;
+    $('#doctor-profile-bio').textContent = doctor.bio;
+    $('#doctor-profile-image').innerHTML = `<img src="${escape(doctor.figura)}" alt="AI lik za demo: ${escape(doctor.ime)}" width="768" height="1024">`;
+    profileDialog.showModal(); document.body.classList.add('modal-open');
+  }
+  figures.forEach((button, i) => button.addEventListener('click', () => i === currentDoctor ? openProfile(button) : selectDoctor(i)));
+  doctorList.forEach((button, i) => button.addEventListener('click', () => selectDoctor(i)));
+  $$('.strelica', stage).forEach(button => button.addEventListener('click', () => selectDoctor(currentDoctor + Number(button.dataset.direction))));
+  stage.addEventListener('keydown', e => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(e.key) || /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
+    e.preventDefault(); selectDoctor(currentDoctor + (e.key === 'ArrowRight' ? 1 : -1));
+  });
+  let touchStart = null;
+  $('#doctor-scene').addEventListener('touchstart', e => { touchStart = {x:e.touches[0].clientX, y:e.touches[0].clientY}; }, {passive:true});
+  $('#doctor-scene').addEventListener('touchend', e => {
+    if (!touchStart) return;
+    const dx = e.changedTouches[0].clientX - touchStart.x, dy = e.changedTouches[0].clientY - touchStart.y;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) selectDoctor(currentDoctor + (dx < 0 ? 1 : -1));
+    touchStart = null;
+  }, {passive:true});
+  $('#doctor-scene').addEventListener('touchcancel', () => { touchStart = null; });
+  $('#doctor-profile-open').addEventListener('click', e => openProfile(e.currentTarget));
+  $('#doctor-profile-close').addEventListener('click', () => profileDialog.close());
+  profileDialog.addEventListener('close', () => {
+    if (!dialog.open) {
+      document.body.classList.remove('modal-open');
+      if (profileTrigger) profileTrigger.focus({preventScroll:true});
+    }
+  });
+  $('#profile-book').addEventListener('click', () => {
+    profileDialog.close(); openBooking($('#stage-book'), C.doktori[currentDoctor].id);
+  });
+  $('#doctor-total').textContent = String(C.doktori.length).padStart(2, '0');
+  selectDoctor(0);
 })();

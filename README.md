@@ -13,6 +13,8 @@ Nema instalacije paketa, build koraka ili runtime biblioteka. Folder `dist/` je 
 - Logo Vizusa prilagođen tamnoj pozadini, bez belog kruga i crnih uglova; AI enterijer u pozadini i odvojeni prozirni iris. Obrada logotipa opisana je u `LOGO-PROMPT.md`.
 - Naziv Očna kuća VIZUS je glavni naslov. Hero zauzima najmanje prvi ekran, a izbor lekara je ispod njega bez preklapanja. Dodatni plavi lukovi i kružići kreću se nezavisno oko oka.
 - CSS rotacija irisa i fokusnih prstenova, pulsiranje zenice, blago praćenje miša. Pauza dugmetom; poštuje `prefers-reduced-motion`, zaustavlja se van hero sekcije i na skrivenoj kartici.
+- Video okvir 16:9 između hero sekcije i doktora, spreman za naknadni video kroz `videoOrdinacije.src`.
+- Sekcija doktora preneta iz Claude šablona `ordinacija-sablon – kopija`: figura u sredini, podaci levo, lista desno, strelice, tastatura, prevlačenje i zaseban profil. Izbor doktora se prenosi u demo zakazivanje. Detalji izvora i AI promptovi su u `DOCTORS-SECTION.md`.
 - Responsive raspored, mobilni meni, pregledi, AI demo profili i stvarni kontakt sa Instagram profila.
 - Modal sa tri demo koraka: pregled/lekar, datum/vreme, pregled izbora.
 - Podaci ne napuštaju stranicu; nema servera za rezervacije i nema stvarnog zakazivanja. Izbor ostaje samo u memoriji dok je dialog otvoren.

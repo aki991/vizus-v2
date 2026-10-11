@@ -1,0 +1,157 @@
+/* Adapted from the user-provided Claude template. */
+/* ---------- BINA SA LEKARIMA ---------- */
+#lekari { padding-top: clamp(48px, 7vw, 96px); }
+.doctors-stage { scroll-margin-top: 0; }
+#doctor-stage {
+  position: relative; overflow: hidden; height: min(92vh, 860px); min-height: 600px;
+  background: #000; isolation: isolate;
+}
+.bina-pozadina { position: absolute; inset: 0; z-index: 0; }
+.bina-pozadina img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.8) saturate(.9); }
+.bina-pozadina .ph { background: radial-gradient(90% 70% at 50% 35%, rgba(var(--accent-rgb), .16), transparent 70%), linear-gradient(180deg, #0f171b, #050809); }
+.bina-scena::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .72) 0%, rgba(0, 0, 0, .3) 34%, transparent 55%),
+    linear-gradient(270deg, rgba(0, 0, 0, .5) 0%, transparent 26%),
+    linear-gradient(0deg, rgba(0, 0, 0, .85) 0%, transparent 32%),
+    linear-gradient(180deg, rgba(0, 0, 0, .7) 0%, transparent 14%);
+}
+.bina-krug {
+  position: absolute; z-index: 2; left: 50%; bottom: 2%; width: min(560px, 70%); aspect-ratio: 4 / 1;
+  transform: translateX(-50%); border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(var(--accent-rgb), .45), transparent);
+  filter: blur(10px); transition: background .5s;
+}
+.bina-tlo { position: absolute; z-index: 2; left: 0; right: 0; bottom: 6%; height: 1px; background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .45), transparent); }
+.lik {
+  position: absolute; bottom: 0; z-index: 3; transform: translateX(-50%);
+  transform-origin: 50% 100%; cursor: pointer; border: 0; padding: 0; background: none;
+  transition: left .75s cubic-bezier(.2, .7, .2, 1), height .75s cubic-bezier(.2, .7, .2, 1), filter .6s ease, opacity .6s ease;
+}
+.lik img, .lik svg { height: 100%; width: auto; max-width: none; display: block; }
+.lik.aktivan { z-index: 5; filter: drop-shadow(0 0 40px rgba(var(--accent-rgb), .25)); }
+.lik.sporedan { filter: brightness(.22) saturate(.6); }
+.lik.sporedan:hover { filter: brightness(.45) saturate(.8); }
+.lik.daleko { opacity: 0; pointer-events: none; }
+.bina-glava { position: absolute; z-index: 6; top: clamp(76px, 8vw, 96px); left: 50%; transform: translateX(-50%); text-align: center; display: grid; gap: 10px; width: min(90%, 520px); }
+.bina-glava h2 { font: 300 clamp(1.8rem, 3.6vw, 2.8rem)/1.05 var(--f-display); color: #F2F6F7; }
+.samo-mob { display: none; }
+@media (max-width: 860px) { .samo-mob { display: inline; } .samo-desk { display: none; } }
+.bina-glava .hint { font: 400 .68rem/1 var(--f-mono); letter-spacing: .14em; color: rgba(242, 246, 247, .45); }
+.bina-info {
+  position: absolute; z-index: 6; left: clamp(20px, 4vw, 56px); top: 50%; transform: translateY(-46%);
+  width: min(330px, 34vw); display: grid; gap: 14px; color: #F2F6F7;
+}
+.bina-info > * { transition: opacity .35s ease, transform .35s ease; }
+.bina-info.menja > * { opacity: 0; transform: translateY(10px); }
+.bi-titula { font: 500 .66rem/1.5 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+.bi-ime { font: 300 clamp(2rem, 3.2vw, 2.7rem)/1.02 var(--f-display); }
+.bi-bio { font-size: .9rem; line-height: 1.7; color: rgba(242, 246, 247, .72); }
+.bi-cinjenice { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 400 .74rem/1.4 var(--f-mono); color: rgba(242, 246, 247, .55); }
+.bi-oblasti { display: flex; flex-wrap: wrap; gap: 6px; }
+.cip { font: 500 .72rem/1 var(--f-body); padding: 7px 11px; border-radius: 999px; border: 1px solid rgba(var(--accent-rgb), .35); color: rgba(242, 246, 247, .85); background: rgba(var(--accent-rgb), .08); }
+.bi-dugmad { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.bi-dugmad .btn { padding: 13px 20px; font-size: .72rem; }
+.bi-dugmad .btn-obris { color: #F2F6F7; border-color: rgba(242, 246, 247, .2); }
+.stat { display: grid; grid-template-columns: 96px 1fr 30px; align-items: center; gap: 10px; font: 400 .7rem/1 var(--f-mono); color: rgba(242, 246, 247, .6); }
+.stat-traka { height: 3px; background: rgba(242, 246, 247, .12); border-radius: 3px; overflow: hidden; }
+.stat-traka i { display: block; height: 100%; background: var(--accent); width: 0; transition: width .9s cubic-bezier(.2, .7, .2, 1); }
+.stat b { font-weight: 500; color: #F2F6F7; text-align: right; font-variant-numeric: tabular-nums; }
+
+.bina-hud {
+  position: absolute; z-index: 6; right: clamp(16px, 3vw, 40px); top: 50%; transform: translateY(-50%);
+  width: 240px; padding: 14px; border-radius: 16px; display: grid; gap: 4px;
+  background: rgba(0, 0, 0, .34); border: 1px solid rgba(255, 255, 255, .09);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); color: #F2F6F7;
+}
+.hud-naslov { font: 500 .62rem/1 var(--f-mono); letter-spacing: .24em; text-transform: uppercase; color: rgba(242, 246, 247, .45); padding: 4px 6px 10px; }
+.hud-stavka {
+  display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 12px; cursor: pointer;
+  background: transparent; border: 1px solid transparent; text-align: left; width: 100%;
+  transition: background .25s, border-color .25s;
+}
+.hud-stavka:hover { background: rgba(255, 255, 255, .05); }
+.hud-stavka.aktivan { background: rgba(var(--accent-rgb), .12); border-color: rgba(var(--accent-rgb), .4); }
+.hud-sl { position: relative; width: 44px; height: 44px; border-radius: 50%; overflow: hidden; flex: none; background: #1a2428; border: 1px solid rgba(255, 255, 255, .12); }
+.hud-sl img { width: 100%; height: 100%; object-fit: cover; }
+.hud-sl .inicijali { position: absolute; inset: 0; display: grid; place-items: center; font: 400 .9rem/1 var(--f-display); color: var(--accent); }
+.hud-ime, .hud-spec { display: block; }
+.hud-ime { font: 500 .86rem/1.25 var(--f-body); }
+.hud-spec { font-size: .7rem; line-height: 1.35; color: rgba(242, 246, 247, .5); }
+
+.bina-dno { position: absolute; z-index: 6; left: 50%; bottom: clamp(18px, 3vw, 32px); transform: translateX(-50%); display: flex; align-items: center; gap: 22px; color: #F2F6F7; }
+.brojac { font: 400 .8rem/1 var(--f-mono); color: rgba(242, 246, 247, .5); font-variant-numeric: tabular-nums; }
+.brojac b { font: 300 1.5rem/1 var(--f-display); color: var(--accent); }
+.strelica {
+  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: rgba(0, 0, 0, .3); border: 1px solid rgba(255, 255, 255, .16); color: #F2F6F7; transition: border-color .2s, color .2s;
+}
+.strelica:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Vizus palette, existing typefaces and controls. */
+.clinic-video{padding:70px 0;background:var(--deep);color:var(--ivory)}
+.video-frame{aspect-ratio:16/9;width:100%;position:relative;overflow:hidden;background:#07383d;border:1px solid #8bcfd32b;border-radius:18px}
+.video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;background:linear-gradient(#02272d99,#02272dd9),url('ordinacija.webp') center/cover}
+.video-placeholder .eyebrow{color:var(--aqua);font-size:10px;margin-bottom:19px}
+.video-placeholder h2{font-size:clamp(27px,4vw,58px)}
+.video-status{margin-top:25px;border:1px solid #c3eeed33;border-radius:999px;font-size:11px;padding:7px 18px;color:#bed9d9}
+.video-format{position:absolute;right:25px;top:21px;font-size:10px;letter-spacing:.15em;color:#94c9cd}
+.video-frame video{display:block;width:100%;height:100%;object-fit:contain}
+.video-accessible-title{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#lekari{--accent:#77e2e7;--accent-rgb:119,226,231;--f-display:var(--serif);--f-body:var(--sans);--f-mono:var(--sans);--gutter:clamp(20px,4vw,56px);padding-top:0;background:var(--deep);color:var(--ivory)}
+#doctor-stage{height:min(92svh,860px);min-height:700px;background:var(--deep)}
+.bina-scena{position:absolute;inset:0;z-index:3}
+.bina-pozadina{background:linear-gradient(#042d3299,#04262bbf),url('ordinacija.webp') center/cover}
+.bina-scena::before{background:linear-gradient(90deg,#021a20e8 0%,#04262b70 35%,transparent 58%),linear-gradient(270deg,#021a20b8,transparent 25%),linear-gradient(0deg,#04262b,transparent 32%),linear-gradient(180deg,#04262ba8,transparent 25%)}
+.bina-glava{top:45px;gap:12px;width:min(90%,580px)}
+.bina-glava .eyebrow{font-size:10px;color:var(--aqua)}
+.bina-glava h2{font-family:var(--serif);font-size:clamp(37px,3.8vw,58px)}
+.bina-glava .hint{font-size:10px;letter-spacing:.07em;color:#c1dddd99}
+.hint-mobile{display:none}
+.bina-info{width:min(280px,25vw);top:54%;gap:20px}
+.bi-titula{font-size:9px;letter-spacing:.17em;margin-bottom:13px}
+.bi-ime{font-size:clamp(39px,3.8vw,56px);margin-bottom:20px}
+.bi-bio{font-size:13px;line-height:1.9;color:#bed2d2}
+.bi-dugmad{gap:12px}.bi-dugmad .button{font-size:11px;padding:11px 20px;min-height:46px;gap:16px}
+.stage-demo-note{font-size:9px;line-height:1.8;color:#91b1b2;max-width:230px}
+.bina-hud{width:220px;background:#04262b88;border-color:#9fd8d72b;top:54%}
+.hud-naslov{font-size:9px;color:#9ebebf;line-height:1.4;letter-spacing:.14em}
+#doctor-list{display:grid;gap:5px}
+.hud-stavka{color:var(--ivory)}.hud-stavka .portrait{width:44px;height:44px;border-radius:50%;border:1px solid #9ddad340}
+.hud-ime{font-size:12px}.hud-spec{font-size:9px;color:#a2bfc0;margin-top:4px}
+.bina-dno{bottom:27px}.strelica{font-size:22px;background:#052e3299}.brojac{font-size:11px;letter-spacing:.1em}.brojac b{font-size:27px}
+.lik img{object-fit:contain}.lik.sporedan{filter:brightness(.22) saturate(.6)}
+.doctor-profile-dialog{padding:0;border:1px solid #78c9d333;border-radius:0 22px 22px 0;background:var(--deep);color:var(--ivory);width:min(520px,calc(100% - 24px));height:100dvh;max-height:100dvh;max-width:100%;margin:0 auto 0 0;overflow-y:auto;box-shadow:0 0 80px #021a2088}
+.doctor-profile-dialog::backdrop{background:#021a23b8;backdrop-filter:blur(6px)}
+.doctor-profile-dialog .dialog-close{z-index:2;color:var(--ivory);background:#052e3299;border-color:#b8e4e044}
+.profile-image{height:380px;background:radial-gradient(ellipse at 50% 90%,#136b7166,transparent 70%);overflow:hidden}
+.profile-image img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.profile-content{padding:29px 35px 40px}.profile-content .eyebrow{font-size:9px;color:var(--aqua);margin-bottom:16px}
+.profile-content h2{font-size:49px;margin-bottom:22px}.profile-content>p:not(.eyebrow){font-size:12px;line-height:1.9;color:#bdd3d3}
+.profile-content .profile-notice{border-top:1px solid #8bcfd333;margin-top:23px;padding-top:22px;color:#91b1b2!important;font-size:10px!important}
+.profile-content .button{margin-top:25px;font-size:11px}
+@media(max-width:1000px){
+  #doctor-stage{height:auto;min-height:0;display:grid}
+  .bina-scena{position:relative;height:600px;min-height:0;overflow:hidden}
+  .bina-scena::before{background:linear-gradient(0deg,var(--deep),transparent 35%),linear-gradient(180deg,#04262bcc,transparent 25%)}
+  .lik.sporedan{opacity:0;pointer-events:none}.lik.aktivan{height:73%!important}
+  .bina-glava{top:37px}.bina-glava h2{font-size:47px}.hint-desktop{display:none}.hint-mobile{display:block}
+  .bina-info,.bina-hud,.bina-dno{position:relative;inset:auto;transform:none;width:auto}
+  .bina-info{padding:0 var(--gutter);margin-top:-24px;gap:20px;max-width:650px}
+  .bi-ime{font-size:48px}.bi-bio{font-size:13px}.stage-demo-note{max-width:none}
+  .bina-dno{order:3;justify-content:center;padding:25px 0 10px}
+  .bina-hud{order:4;margin:0 var(--gutter) 37px;padding:0;background:transparent;border:0;backdrop-filter:none}
+  .hud-naslov{display:none}#doctor-list{display:flex;gap:10px;flex-wrap:wrap}
+  .hud-stavka{width:auto;flex:1;max-width:260px;padding:8px 15px 8px 8px;border:1px solid #86c3c333;border-radius:999px}
+}
+@media(max-width:700px){
+  .clinic-video{padding:30px 0 38px}.video-frame{border-radius:12px}.video-placeholder .eyebrow{font-size:7px;margin-bottom:9px;letter-spacing:.17em}
+  .video-placeholder h2{font-size:clamp(24px,6vw,36px)}.video-status{font-size:8px;padding:4px 12px;margin-top:13px}.video-format{top:11px;right:13px;font-size:8px}
+  .bina-scena{height:520px}.bina-glava{top:32px;gap:9px}.bina-glava h2{font-size:37px}.bina-glava .eyebrow{font-size:8px}.bina-glava .hint{font-size:9px}
+  .bina-info{margin-top:-8px}.bi-ime{font-size:43px;margin-bottom:15px}.bi-bio{font-size:12px}.bi-dugmad .button{font-size:10px;padding-inline:17px}.stage-demo-note{font-size:8px}
+  .hud-stavka .portrait{height:34px;width:34px}.hud-stavka{gap:9px;padding-right:12px}.hud-ime{font-size:10px}.hud-spec{font-size:8px}
+  .profile-image{height:310px}.profile-content{padding:25px}.profile-content h2{font-size:43px}
+}
+@media(prefers-reduced-motion:reduce){.lik{transition:none}}
+
