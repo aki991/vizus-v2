@@ -54,6 +54,6 @@ window.ORDINACIJA = {
     { id: 'pritisak', naziv: 'Merenje očnog pritiska', opis: 'Provera očnog pritiska kao deo brige o zdravlju očiju, uz tumačenje rezultata i preporuku daljih kontrola.', broj: '03', slika: 'assets/usluga-pritisak.webp', alt: 'Ilustracija merenja očnog pritiska beskontaktnim tonometrom' },
     { id: 'konsultacija', naziv: 'Kontrole i konsultacije', opis: 'Praćenje promena vida i razgovor o prethodnim nalazima. Prostor za vaša pitanja i plan sledeće posete.', broj: '04', slika: 'assets/usluga-konsultacija.webp', alt: 'Ilustracija razgovora pacijentkinje sa oftalmologom' }
   ],
-  // Ilustrativni raspored služi isključivo demonstraciji, nije radno vreme Vizusa.
-  demo: { interval: 30, hours: [{ dani: [1, 2, 3, 4, 5], od: '09:00', do: '17:00' }] }
+  // Radno vreme je potvrdio vlasnik demo projekta. Dostupnost termina je simulirana.
+  demo: { interval: 30, hours: [{ dani: [1, 2, 3, 4, 5], od: '09:00', do: '20:00' }, { dani: [6], od: '08:00', do: '15:00' }] }
 };
