@@ -1,0 +1,29 @@
+{
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "id": "marko",
+      "source": "C:\\Users\\Andreja\\.codex\\generated_images\\01a12b0c-2fa6-74b0-976b-15750651308e\\exec-cea79fc6-4055-4b41-a223-1dc9e92c56f8.png",
+      "output": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\dist\\assets\\iskustvo-marko.webp",
+      "prompt": "Photorealistic square portrait photograph for a small circular website testimonial avatar. a fictional Serbian man about 40 years old, short brown hair, light stubble, casual muted beige shirt. Friendly natural understated smile, looking toward camera, centered head and shoulders, softly blurred pale neutral background, gentle daylight, realistic skin, editorial candid portrait quality, no doctor uniform, no text, no logos, no borders. This is an invented person for a clearly labeled illustrative demo testimonial."
+    },
+    {
+      "id": "jelena",
+      "source": "C:\\Users\\Andreja\\.codex\\generated_images\\01a12b0c-2fa6-74b0-976b-15750651308e\\exec-26ee02e3-75b3-4e5b-992b-81d1c8f4350a.png",
+      "output": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\dist\\assets\\iskustvo-jelena.webp",
+      "prompt": "Photorealistic square portrait photograph for a small circular website testimonial avatar. a fictional Serbian woman about 38 years old, shoulder-length wavy brown hair, casual ivory blouse. Friendly natural understated smile, looking toward camera, centered head and shoulders, softly blurred pale neutral background, gentle daylight, realistic skin, editorial candid portrait quality, no doctor uniform, no text, no logos, no borders. This is an invented person for a clearly labeled illustrative demo testimonial."
+    },
+    {
+      "id": "milica",
+      "source": "C:\\Users\\Andreja\\.codex\\generated_images\\01a12b0c-2fa6-74b0-976b-15750651308e\\exec-accf8f43-0e4c-42d7-a7d2-7ec37c720cac.png",
+      "output": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\dist\\assets\\iskustvo-milica.webp",
+      "prompt": "Photorealistic square portrait photograph for a small circular website testimonial avatar. a fictional Serbian woman about 28 years old, dark hair tied loosely, casual muted sage sweater. Friendly natural understated smile, looking toward camera, centered head and shoulders, softly blurred pale neutral background, gentle daylight, realistic skin, editorial candid portrait quality, no doctor uniform, no text, no logos, no borders. This is an invented person for a clearly labeled illustrative demo testimonial."
+    },
+    {
+      "id": "petar",
+      "source": "C:\\Users\\Andreja\\.codex\\generated_images\\01a12b0c-2fa6-74b0-976b-15750651308e\\exec-159897fa-6429-43bb-8d86-a1475df47c0c.png",
+      "output": "C:\\Users\\Andreja\\.codex\\.chatgpt-projects\\g-p-6abfa86d3b048191b3c085dcae8e7ef6\\vizus-demo\\sajt\\dist\\assets\\iskustvo-petar.webp",
+      "prompt": "Photorealistic square portrait photograph for a small circular website testimonial avatar. a fictional Serbian man about 60 years old, short silver hair, clean-shaven, casual pale blue shirt. Friendly natural understated smile, looking toward camera, centered head and shoulders, softly blurred pale neutral background, gentle daylight, realistic skin, editorial candid portrait quality, no doctor uniform, no text, no logos, no borders. This is an invented person for a clearly labeled illustrative demo testimonial."
+    }
+  ]
+}

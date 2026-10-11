@@ -20,11 +20,13 @@
   <link rel="stylesheet" href="assets/light-sections.css">
   <link rel="stylesheet" href="assets/booking-contact.css">
   <link rel="stylesheet" href="assets/mint-theme.css">
+  <link rel="stylesheet" href="assets/experiences.css">
   <script src="klijenti/vizus/config.js" defer></script>
   <script src="assets/booking-availability.js" defer></script>
   <script src="assets/app.js" defer></script>
   <script src="assets/booking-section.js" defer></script>
   <script src="assets/visit-counters.js" defer></script>
+  <script src="assets/experiences.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#sadrzaj">Preskočite na sadržaj</a>
@@ -108,6 +110,16 @@
   <p class="stats-note">Broj poseta je demo procena: oko 5 poseta dnevno × 310 radnih dana × 29 godina. Ne predstavlja evidenciju ordinacije niti broj jedinstvenih pacijenata.</p>
 </div></section>
 
+<section class="experiences section" id="iskustva" aria-labelledby="experiences-title"><div class="shell">
+  <div class="experiences-heading"><h2 id="experiences-title">Iskustva</h2><p>Ilustrativni komentari za demo prikaz</p></div>
+  <div class="testimonial-carousel" role="region" aria-roledescription="karusel" aria-label="Četiri ilustrativna iskustva" tabindex="0">
+    <div class="testimonial-viewport" id="testimonial-viewport"></div>
+    <button class="testimonial-arrow testimonial-side testimonial-prev" type="button" data-testimonial-direction="-1" aria-label="Prethodno iskustvo">‹</button><button class="testimonial-arrow testimonial-side testimonial-next" type="button" data-testimonial-direction="1" aria-label="Sledeće iskustvo">›</button>
+    <div class="testimonial-controls"><button class="testimonial-arrow" type="button" data-testimonial-direction="-1" aria-label="Prethodno iskustvo">‹</button><div class="testimonial-dots" id="testimonial-dots" role="group" aria-label="Izbor komentara"></div><button class="testimonial-arrow" type="button" data-testimonial-direction="1" aria-label="Sledeće iskustvo">›</button></div>
+    <p class="sr-only" id="testimonial-status" aria-live="polite" aria-atomic="true"></p>
+  </div>
+  <p class="testimonial-note">Komentari, imena i AI portreti su ilustrativni; ne predstavljaju stvarne recenzije pacijenata.</p>
+</div></section>
     <section class="booking-section section" id="zakazivanje" aria-labelledby="booking-heading">
       <div class="shell">
         <div class="section-heading"><div><p class="eyebrow">ZAKAŽITE PREGLED</p><h2 id="booking-heading" tabindex="-1">Vaš termin.<br><em>Sve na jednom mestu.</em></h2></div><p>Izaberite datum, vreme, lekara i pregled.<br>Zatim proverite i potvrdite svoj izbor.</p></div>
