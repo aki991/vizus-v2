@@ -1,6 +1,7 @@
 /* Preserve the original heading/body pair for instant rollback. */
 :root{--serif-classic:'Cormorant Garamond',Georgia,serif;--sans-classic:'Manrope',Arial,sans-serif;--serif-reference:Georgia,'Times New Roman',serif;--serif:var(--serif-classic);--sans:var(--sans-classic)}
-html[data-typography=reference]{--serif:var(--serif-reference);--sans:var(--serif-reference)}
+html[data-typography=reference]{--serif:var(--serif-reference);--sans:var(--serif-reference);font-variant-numeric:lining-nums;font-feature-settings:'lnum' 1}
+html[data-typography=reference] :is(.stat-value,.journey-number,.service-number,.brojac,.calendar-days button,.time-options button,.booking-hours b,.contact-working-hours b){font-family:var(--serif-reference);font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'lnum' 1,'tnum' 1}
 html[data-typography=reference] .hero-promise{font-weight:400;letter-spacing:-.015em;line-height:1.16}
 .font-preview{margin-top:15px;padding-top:13px;border-top:1px solid #b8d2d82b}
 .font-preview-label{display:block;margin-bottom:9px;font-size:11px;color:#d8e9ed}
