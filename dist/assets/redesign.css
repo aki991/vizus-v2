@@ -3,7 +3,7 @@
 :root{
   --v2-teal:#138a90;--v2-teal-hover:#0f737a;--v2-ink:#0d4a52;--v2-text:#4b666b;
   --v2-soft:#eef4f5;--v2-line:#e1ecee;--v2-shadow:0 10px 30px #0f3f461a;--v2-radius:18px;
-  --v2-header:88px
+  --v2-header:100px
 }
 body{background:#fff;color:var(--v2-ink)}
 html{scroll-padding-top:calc(var(--v2-header) + 12px)}
@@ -22,21 +22,22 @@ html{scroll-padding-top:calc(var(--v2-header) + 12px)}
 /* Zaglavlje: bela traka */
 #header.header,#header.header.header-light,#header.header:not(.header-light){height:var(--v2-header);background:#fff;color:var(--v2-ink);border-bottom:1px solid var(--v2-line);box-shadow:0 2px 18px #0f3f460f;-webkit-backdrop-filter:none;backdrop-filter:none}
 #header.is-scrolled{box-shadow:0 6px 24px #0f3f461f}
-#header .brand img{width:118px;height:70px;object-fit:contain;filter:none}
-#header .navigation{gap:34px;color:var(--v2-ink)}
-#header .navigation a{font-family:var(--sans);font-size:16px;font-weight:500;color:#0f5f68}
+/* Dimenzije menija su iste kao u verziji 1 (dolaze iz site.css); ovde menjamo samo boje. */
+#header .brand img{filter:none}
+#header .navigation{color:var(--v2-ink)}
+#header .navigation a{color:#0f5f68}
 #header .navigation a:hover{color:var(--v2-teal)}
 #header .navigation a:after{background:var(--v2-teal)}
-#header .nav-book{font-family:var(--sans);font-size:16px;font-weight:600;min-height:46px;padding:10px 24px;background:var(--v2-teal);border:0;border-radius:999px;color:#fff;box-shadow:0 6px 16px #138a9033}
+#header .nav-book{background:var(--v2-teal);border-color:var(--v2-teal);color:#fff}
 #header .nav-book:hover{background:var(--v2-teal-hover)}
 #header .menu-toggle{color:var(--v2-ink)}
 @media(max-width:900px){
-  :root{--v2-header:76px}
-  #header .brand img{width:100px;height:58px}
-  #header .navigation{top:var(--v2-header);background:#fff;border-bottom:1px solid var(--v2-line);box-shadow:0 14px 24px #0f3f461a}
-  #header .navigation a{font-size:18px;border-bottom-color:var(--v2-line)}
-  #header .nav-book{font-size:15px;min-height:42px;padding:9px 18px}
+  :root{--v2-header:86px}
+  #header .navigation{background:#fff;border-bottom:1px solid var(--v2-line);box-shadow:0 14px 24px #0f3f461a}
+  #header .navigation a{border-bottom-color:var(--v2-line)}
 }
+/* Na računaru se meni srazmerno uvećava/smanjuje kao u verziji 1 (desktop-hero-scale.js). */
+html.hero-scaled .v2-hero{padding-top:calc(var(--v2-header) * var(--hero-scale))}
 
 /* Hero */
 .v2-hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;min-height:clamp(600px,46vw,880px);padding-top:var(--v2-header);background:linear-gradient(100deg,#93cdd1 0%,#bfe2e4 30%,#e4f2f2 52%,#f3f1ee 100%)}
