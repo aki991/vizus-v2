@@ -256,3 +256,33 @@ main #about-title{font-size:30px}
   .v2-review blockquote{font-size:18px}
 }
 @media(max-width:420px){.v2-doctor-body h3{font-size:21px}.v2-doctor-body p{font-size:15px}}
+
+/* ===== Meni: plavičasti prelaz kao u heru (levo tamnije, desno skroz svetlo) ===== */
+#header.header,#header.header.header-light,#header.header:not(.header-light){background:linear-gradient(90deg,#8ccacf 0%,#aad9dc 28%,#cfe9eb 55%,#eaf5f6 80%,#f8fbfb 100%);border-bottom-color:#9fcbd033}
+@media(max-width:900px){#header .navigation{background:linear-gradient(90deg,#d6edef,#f4fafa)}}
+
+/* ===== Tekst heroa kao u verziji 1 =====
+   --hs je 1px na ekranu širokom 1920px i menja se srazmerno (od 0.75 do 1.33), kao skaliranje u verziji 1. */
+.v2-hero{--hs:clamp(.75px,calc(100vw / 1920),1.3333px)}
+.v2-hero-copy{max-width:none}
+.v2-hero-eyebrow{margin-bottom:calc(25 * var(--hs));font-size:calc(15 * var(--hs));font-weight:600;letter-spacing:.18em;color:#176a76}
+.v2-hero-eyebrow span{margin-inline:8px}
+.v2-hero h1{font-size:inherit;line-height:1;letter-spacing:0}
+.v2-hero h1>span{display:block;margin-bottom:calc(8 * var(--hs));font-size:calc(26 * var(--hs));font-weight:400;letter-spacing:.04em;color:#123f48}
+.v2-hero h1>strong{display:block;margin-left:-4px;font-size:calc(128 * var(--hs));font-weight:500;letter-spacing:.09em;line-height:1;color:#123f48}
+.v2-hero-promise{margin-top:calc(23 * var(--hs));font-size:calc(51 * var(--hs));font-weight:400;line-height:1.16;letter-spacing:-.015em;color:#123f48}
+.v2-hero-desc{margin-top:calc(21 * var(--hs));font-size:calc(19 * var(--hs));color:#285d67}
+.v2-hero-exp{display:none;margin-top:6px;font-size:13px;color:#285d67}
+.v2-hero-actions{margin-top:calc(29 * var(--hs))}
+@media(max-width:1200px){.v2-hero h1>strong{font-size:clamp(88px,9vw,110px)}}
+@media(max-width:980px){.v2-hero h1>span{font-size:21px}.v2-hero-promise{font-size:36px}.v2-hero-desc{font-size:15px}.v2-hero-eyebrow{font-size:13px}}
+@media(max-width:700px){
+  .v2-hero-eyebrow{font-size:13px;letter-spacing:.12em;margin-bottom:23px}
+  .v2-hero-eyebrow span{margin-inline:4px}
+  .v2-hero h1>span{font-size:21px;margin-bottom:5px}
+  .v2-hero h1>strong{font-size:clamp(72px,21vw,100px);letter-spacing:.07em}
+  .v2-hero-promise{font-size:clamp(28px,7.5vw,36px);margin-top:18px}
+  .v2-hero-desc{font-size:13px;margin-top:17px}
+  .v2-hero-exp{display:block}
+  .v2-hero-actions{margin-top:24px}
+}
