@@ -14,8 +14,8 @@
       buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.fontOption === current)));
       const status = document.querySelector('#font-preview-status');
       if (status) status.textContent = current === 'classic'
-        ? 'Prikazuje se prethodni font: Cormorant Garamond.'
-        : 'Prikazuje se novi font: Georgia.';
+        ? 'Prethodna tipografija: Cormorant Garamond i Manrope.'
+        : 'Georgia se prikazuje na celom sajtu.';
     }
     buttons.forEach(button => button.addEventListener('click', function () {
       const next = button.dataset.fontOption;
