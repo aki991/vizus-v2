@@ -1,14 +1,7 @@
-/* Preserve the original heading/body pair for instant rollback. */
-:root{--serif-classic:'Cormorant Garamond',Georgia,serif;--sans-classic:'Manrope',Arial,sans-serif;--serif-reference:Georgia,'Times New Roman',serif;--serif:var(--serif-classic);--sans:var(--sans-classic)}
+/* Site typography: Georgia for headings and body text. */
+:root{--serif-reference:Georgia,'Times New Roman',serif;--serif:var(--serif-reference);--sans:var(--serif-reference)}
 html[data-typography=reference]{--serif:var(--serif-reference);--sans:var(--serif-reference);font-variant-numeric:lining-nums;font-feature-settings:'lnum' 1}
 html[data-typography=reference] :is(.stat-value,.journey-number,.service-number,.brojac,.calendar-days button,.time-options button,.booking-hours b,.contact-working-hours b){font-family:var(--serif-reference);font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'lnum' 1,'tnum' 1}
 html[data-typography=reference] .hero-promise{font-weight:400;letter-spacing:-.015em;line-height:1.16}
-.font-preview{margin-top:15px;padding-top:13px;border-top:1px solid #b8d2d82b}
-.font-preview-label{display:block;margin-bottom:9px;font-size:11px;color:#d8e9ed}
-.font-preview-options{display:flex;flex-wrap:wrap;gap:8px}
-.font-preview-option{font:600 12px/1.5 var(--sans);border:1px solid #a8cdd359;border-radius:999px;min-height:36px;padding:8px 14px;background:transparent;color:#e3eff1}
-.font-preview-option:hover{background:#ffffff12}
-.font-preview-option[aria-pressed=true]{background:#007c85;border-color:#75cbd2;color:#fff}
-.font-preview-note{font-size:9px;color:#bdd6dc;line-height:1.8;margin-top:9px}
 @media(max-width:700px){html[data-typography=reference] .stat-value{font-size:clamp(36px,12vw,52px);gap:6px}html[data-typography=reference] .stat-value>small{font-size:9px}}
 @media(max-width:380px){html[data-typography=reference] .stat-value{font-size:11vw;gap:5px}html[data-typography=reference] .stat-value>small{font-size:8px}}

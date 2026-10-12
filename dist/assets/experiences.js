@@ -8,5 +8,5 @@
     {name:'Jelena M.', image:'assets/iskustvo-jelena.webp', text:'Pažljiv tim i prostor za sva moja pitanja. Posebno mi znači kada su preporuke objašnjene razumljivo.'},
     {name:'Milica S.', image:'assets/iskustvo-milica.webp', text:'Jednostavan izbor termina i prijatna atmosfera. Dopala mi se pažnja pri razgovoru o mom vidu.'}
   ];
-  viewport.innerHTML = reviews.map(r => `<article class="testimonial-card"><img class="testimonial-avatar" src="${r.image}" alt="AI portret za ilustrativni komentar ${r.name}" loading="lazy" width="96" height="96"><p class="testimonial-stars" aria-label="5 od 5 zvezdica"><span aria-hidden="true">★★★★★</span></p><blockquote>${r.text}</blockquote><cite>– ${r.name}</cite><span class="testimonial-demo-label">Primer komentara · demo</span></article>`).join('');
+  viewport.innerHTML = reviews.map(r => `<article class="v2-review reveal is-visible"><img class="v2-review-avatar" src="${r.image}" alt="" loading="lazy" width="96" height="96"><h3>${r.name}</h3><p class="v2-review-stars" aria-label="5 od 5 zvezdica"><span aria-hidden="true">★★★★★</span></p><blockquote>„${r.text}“</blockquote></article>`).join('');
 })();

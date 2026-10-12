@@ -8,7 +8,7 @@ window.ORDINACIJA = {
   },
   doktori: [
     {
-      id: 'demo-1', ime: 'Dr Ana Petrović', oblast: 'Pregledi i prevencija', figura: 'assets/tim-ana.webp', portret: 'assets/portret-ana.webp',
+      id: 'demo-1', ime: 'Dr Ana Petrović', oblast: 'Specijalista oftalmologije', figura: 'assets/tim-ana.webp', portret: 'assets/portret-ana.webp',
       bio: 'Pažljiv razgovor, jasan pregled i prostor za svako pitanje. U ovom demo profilu Ana predstavlja pristup koji povezuje redovne kontrole vida sa brigom o svakodnevnim navikama.',
       oblasti: ['Kontrola vida', 'Preventivni pregledi', 'Razgovor sa pacijentom'],
       profil: [
@@ -18,7 +18,7 @@ window.ORDINACIJA = {
       ]
     },
     {
-      id: 'demo-2', ime: 'Dr Nikola Jovanović', oblast: 'Detaljan pregled vida', figura: 'assets/tim-nikola.webp', portret: 'assets/portret-nikola.webp',
+      id: 'demo-2', ime: 'Dr Nikola Jovanović', oblast: 'Hirurg oftalmolog', figura: 'assets/tim-nikola.webp', portret: 'assets/portret-nikola.webp',
       bio: 'Temeljan pristup pregledu uz razumljivo objašnjenje nalaza. Nikolin demo profil stavlja u prvi plan preciznost, kontinuitet kontrola i zajednički dogovor o narednim koracima.',
       oblasti: ['Oftalmološki pregled', 'Praćenje promena', 'Kontrolni pregledi'],
       profil: [
@@ -28,7 +28,7 @@ window.ORDINACIJA = {
       ]
     },
     {
-      id: 'demo-3', ime: 'Dr Jelena Marković', oblast: 'Porodična briga o vidu', figura: 'assets/tim-jelena.webp', portret: 'assets/portret-jelena.webp',
+      id: 'demo-3', ime: 'Dr Jelena Marković', oblast: 'Specijalista za glaukom', figura: 'assets/tim-jelena.webp', portret: 'assets/portret-jelena.webp',
       bio: 'Topao pristup i pregled prilagođen potrebama pacijenta. Jelenin ilustrativni profil naglašava strpljenje, sigurnost tokom posete i razumljiv razgovor o zdravlju očiju.',
       oblasti: ['Porodične konsultacije', 'Kontrola vida', 'Podrška tokom pregleda'],
       profil: [
@@ -38,7 +38,7 @@ window.ORDINACIJA = {
       ]
     },
     {
-      id: 'demo-4', ime: 'Dr Milica Stanković', oblast: 'Vid u svakodnevnom životu', figura: 'assets/tim-milica.webp', portret: 'assets/portret-milica.webp',
+      id: 'demo-4', ime: 'Dr Milica Stanković', oblast: 'Dečiji oftalmolog', figura: 'assets/tim-milica.webp', portret: 'assets/portret-milica.webp',
       bio: 'Briga o vidu prilagođena vašem ritmu života. Miličin demo profil povezuje pažljiv pregled, razgovor o vizuelnom komforu i podršku pri razumevanju preporuka.',
       oblasti: ['Vizuelni komfor', 'Rad za ekranom', 'Konsultacije'],
       profil: [

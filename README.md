@@ -6,7 +6,7 @@ Samostalni statički demo u `dist/`, napravljen prema odobrenom predlogu hero se
 
 Uz instaliran Node.js: `node preview-server.mjs`, zatim otvoriti `http://127.0.0.1:4173/`. Alternativno servirati `dist/` bilo kojim statičkim serverom.
 
-Nema instalacije paketa, build koraka ili runtime biblioteka. Folder `dist/` je spreman za statički hosting, uključujući Vercel. Google Fonts koriste Cormorant Garamond i Manrope; sistemski fontovi su rezervna opcija.
+Svi stilovi su u jednom fajlu `dist/assets/site.css` (stari pojedinačni fajlovi su sačuvani u `css-izvori-staro/`). Nema instalacije paketa, build koraka ili runtime biblioteka. Folder `dist/` je spreman za statički hosting, uključujući Vercel. Fontovi: Georgia (sistemski) za naslove i tekst, Roboto Condensed (Google Fonts) za meni, usluge, footer i kontakt formu.
 
 ## Izgled i ponašanje
 

@@ -1,0 +1,11 @@
+/* Reference typography and controls are limited to the existing service cards. */
+#pregledi .service-card{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif}
+#pregledi .service-copy{position:relative;padding-top:0}
+#pregledi .service-icon{display:grid;place-items:center;flex-shrink:0;width:58px;height:58px;margin-top:-29px;margin-bottom:12px;border:2px solid #fff;border-radius:16px;background:#138b94;color:#e5f7f5;position:relative}
+#pregledi .service-icon svg{width:40px;height:40px;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#pregledi .service-copy h3{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;font-size:25px;font-weight:700;line-height:1.12;letter-spacing:0;min-height:56px}
+#pregledi .service-copy p{font-size:17px;line-height:1.35;color:#25464b;margin:12px 0 22px}
+#pregledi .service-link{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;font-size:18px;font-weight:600;line-height:1.25;justify-content:center;text-align:center;min-height:44px;padding:11px 18px;border:1px solid #138b94;border-radius:999px;background:#138b94;color:#fff;transition:background .2s,border-color .2s}
+#pregledi .service-link:hover{background:#0b727c;border-color:#0b727c}
+@media(max-width:700px){#pregledi .service-copy h3{font-size:24px}#pregledi .service-copy p{font-size:16px}#pregledi .service-link{font-size:17px}}
+@media(max-width:480px){#pregledi .service-copy h3{min-height:0}}

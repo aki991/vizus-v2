@@ -5,17 +5,19 @@
   const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
   const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
   document.documentElement.classList.add('js');
-  const portrait = (doctor, lazy = true) => `<div class="portrait video-portrait"><img src="${escape(doctor.portret)}" alt="Portret iz dostavljenog videa: ${escape(doctor.ime)} · demo ime" ${lazy ? 'loading="lazy"' : ''} width="300" height="300"></div>`;
-  $('#doctor-figures').innerHTML = C.doktori.map((d, i) => `<button class="lik" type="button" data-index="${i}" aria-label="Izaberite: ${escape(d.ime)}"><img src="${escape(d.figura)}" alt="AI lik za demo: ${escape(d.ime)}" loading="lazy" width="768" height="1024"></button>`).join('');
-  $('#doctor-list').innerHTML = C.doktori.map((d, i) => `<button class="hud-stavka" type="button" data-index="${i}" aria-pressed="false">${portrait(d)}<span><span class="hud-ime">${escape(d.ime)}</span><span class="hud-spec">${escape(d.oblast)} · demo</span></span></button>`).join('');
-  $('#service-list').innerHTML = C.usluge.map(s => `<article class="service-card reveal"><div class="service-image"><img src="${escape(s.slika)}" alt="${escape(s.alt)}" loading="lazy" width="1536" height="1024"><span class="service-number">${s.broj}</span></div><div class="service-copy"><h3>${escape(s.naziv)}</h3><p>${escape(s.opis)}</p><button class="service-link" type="button" data-book data-service="${escape(s.id)}">Izaberite pregled</button></div></article>`).join('');
+  const serviceIcons = {
+    pregled: '<path d="M3 20s6-9 17-9 17 9 17 9-6 9-17 9S3 20 3 20Z"/><circle cx="20" cy="20" r="7"/><path d="M20 16a4 4 0 1 1-4 4"/>',
+    dioptrija: '<path d="M3 16h11l2 3-2 8H7l-3-3-1-8Zm21 0h13l-1 8-3 3h-7l-2-8Zm-8 3c2-2 6-2 8 0M3 16l-1-2m35 2 1-2"/>',
+    pritisak: '<path d="M5 24a15 15 0 1 1 30 0M20 6v4M9 11l3 3M31 11l-3 3M5 20h4M35 20h-4M20 26V13l6 8"/><circle cx="20" cy="29" r="3"/><path d="M12 34h16"/>',
+    konsultacija: '<circle cx="20" cy="11" r="4"/><path d="M12 22v-2a8 8 0 0 1 16 0v2"/><circle cx="9" cy="25" r="3"/><circle cx="31" cy="25" r="3"/><path d="M3 35v-3a6 6 0 0 1 12 0v3H3Zm22 0v-3a6 6 0 0 1 12 0v3H25ZM17 28h6m-3-3v6"/>'
+  };
+  $('#service-list').innerHTML = C.usluge.map(s => `<article class="v2-service reveal"><div class="v2-service-image"><img src="${escape(s.slika)}" alt="${escape(s.alt)}" loading="lazy" width="1536" height="1024"><span class="v2-service-icon" aria-hidden="true"><svg viewBox="0 0 40 40">${serviceIcons[s.id] || serviceIcons.pregled}</svg></span></div><div class="v2-service-body"><h3>${escape(s.naziv)}</h3><p>${escape(s.opis)}</p><button class="v2-btn v2-btn-solid v2-btn-small" type="button" data-book data-service="${escape(s.id)}">Izaberite pregled</button></div></article>`).join('');
+  // Team cards: the photo opens the full profile, "Zakaži" opens booking with that doctor.
+  $('#team-list').innerHTML = C.doktori.map((d, i) => `<article class="v2-doctor reveal"><button class="v2-doctor-photo" type="button" data-profile="${i}" aria-label="Profil: ${escape(d.ime)}"><img src="${escape(d.figura)}" alt="" loading="lazy" width="900" height="1350"></button><div class="v2-doctor-body"><h3>${escape(d.ime)}</h3><p>${escape(d.oblast)}</p><button class="v2-btn v2-btn-solid v2-btn-xs" type="button" data-book data-doctor="${escape(d.id)}">Zakaži</button></div></article>`).join('');
   // The mobile menu uses normal anchor navigation; Escape restores focus.
   const header = $('#header'), menuButton = $('#menu-toggle');
-  function updateHeaderTone() {
-    header.classList.toggle('header-light', $('#pocetna').getBoundingClientRect().bottom <= header.offsetHeight + 24);
-  }
+  function updateHeaderTone() { header.classList.toggle('is-scrolled', window.scrollY > 10); }
   window.addEventListener('scroll', updateHeaderTone, {passive:true});
-  window.addEventListener('resize', updateHeaderTone);
   updateHeaderTone();
   function menu(open) {
     header.classList.toggle('menu-open', open);
@@ -28,31 +30,6 @@
     if (e.key === 'Escape' && header.classList.contains('menu-open')) { menu(false); menuButton.focus(); }
   });
 
-  // Motion is GPU-friendly CSS. No WebGL dependency or permanent JS render loop.
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const hero = $('#pocetna'), scene = $('#eye-scene'), visual = $('#hero-visual'), motionButton = $('#motion-toggle');
-  let userPaused = false;
-  function pauseMotion() {
-    hero.classList.toggle('motion-paused', userPaused || reducedMotion.matches);
-    motionButton.setAttribute('aria-pressed', String(userPaused));
-    motionButton.setAttribute('aria-label', userPaused ? 'Pokrenite animaciju oka' : 'Pauzirajte animaciju oka');
-  }
-  motionButton.addEventListener('click', () => { userPaused = !userPaused; pauseMotion(); });
-  reducedMotion.addEventListener('change', pauseMotion);
-  pauseMotion();
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => {
-      hero.classList.toggle('motion-offscreen', !entries[0].isIntersecting);
-    }, { threshold: 0 }).observe(hero);
-  }
-  document.addEventListener('visibilitychange', () => hero.classList.toggle('motion-offscreen', document.hidden));
-  visual.addEventListener('pointermove', e => {
-    if (reducedMotion.matches || userPaused || e.pointerType !== 'mouse') return;
-    const r = visual.getBoundingClientRect();
-    scene.style.setProperty('--rx', `${-((e.clientY - r.top) / r.height - .5) * 7}deg`);
-    scene.style.setProperty('--ry', `${((e.clientX - r.left) / r.width - .5) * 9}deg`);
-  });
-  visual.addEventListener('pointerleave', () => { scene.style.setProperty('--rx', '0deg'); scene.style.setProperty('--ry', '0deg'); });
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
@@ -60,68 +37,19 @@
     $$('.reveal').forEach(el => revealObserver.observe(el));
   } else $$('.reveal').forEach(el => el.classList.add('is-visible'));
 
-  // Doctor stage adapted from the user's Claude template: figures, info, list and arrows.
-  const stage = $('#doctor-stage'), figures = $$('.lik', stage), doctorList = $$('.hud-stavka', stage);
+  // Full doctor profile dialog, opened from the team cards.
   const profileDialog = $('#doctor-profile-dialog');
   let currentDoctor = 0, profileTrigger = null;
-  function selectDoctor(index) {
-    currentDoctor = (index + C.doktori.length) % C.doktori.length;
-    const doctor = C.doktori[currentDoctor];
-    figures.forEach((figure, i) => {
-      const relative = (i - currentDoctor + figures.length) % figures.length;
-      const offset = relative <= (figures.length - 1) / 2 ? relative : relative - figures.length;
-      const distance = Math.abs(offset);
-      figure.classList.toggle('aktivan', distance === 0);
-      figure.classList.toggle('sporedan', distance > 0);
-      figure.classList.toggle('daleko', distance > 1);
-      figure.style.left = `${50 + offset * 110}%`;
-      figure.style.height = '96%';
-      figure.tabIndex = distance === 0 ? 0 : -1;
-      figure.inert = distance !== 0;
-      figure.setAttribute('aria-hidden', String(distance !== 0));
-      figure.setAttribute('aria-pressed', String(distance === 0));
-      figure.setAttribute('aria-label', `Izaberite: ${C.doktori[i].ime}`);
-    });
-    doctorList.forEach((button, i) => {
-      button.classList.toggle('aktivan', i === currentDoctor);
-      button.setAttribute('aria-pressed', String(i === currentDoctor));
-    });
-    $('#selected-doctor-name').textContent = doctor.ime;
-    $('#selected-doctor-bio').textContent = doctor.bio;
-    $('#selected-doctor-area').textContent = doctor.oblast;
-    $('#selected-doctor-topics').innerHTML = doctor.oblasti.map(area => `<span class="cip">${escape(area)}</span>`).join('');
-    $('#stage-book').dataset.doctor = doctor.id;
-    $('#doctor-current').textContent = String(currentDoctor + 1).padStart(2, '0');
-  }
-  function openProfile(button) {
-    const doctor = C.doktori[currentDoctor];
+  function openProfile(index, button) {
+    currentDoctor = index;
+    const doctor = C.doktori[index];
     profileTrigger = button;
     $('#doctor-profile-title').textContent = doctor.ime;
     $('#doctor-profile-bio').innerHTML = `<p class="profile-intro">${escape(doctor.bio)}</p>` + doctor.profil.map(section => `<section class="profile-section"><h3>${escape(section.naslov)}</h3><p>${escape(section.tekst)}</p></section>`).join('');
     $('#doctor-profile-image').innerHTML = `<img src="${escape(doctor.figura)}" alt="AI lik za demo: ${escape(doctor.ime)}" width="768" height="1024">`;
     profileDialog.showModal(); document.body.classList.add('modal-open');
   }
-  figures.forEach((button, i) => button.addEventListener('click', () => selectDoctor(i)));
-  doctorList.forEach((button, i) => button.addEventListener('click', () => selectDoctor(i)));
-  $$('.strelica', stage).forEach(button => button.addEventListener('click', () => selectDoctor(currentDoctor + Number(button.dataset.direction))));
-  stage.addEventListener('keydown', e => {
-    if (!['ArrowLeft', 'ArrowRight'].includes(e.key) || /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
-    e.preventDefault();
-    const fromFigure = e.target.closest('.lik'), fromList = e.target.closest('.hud-stavka');
-    selectDoctor(currentDoctor + (e.key === 'ArrowRight' ? 1 : -1));
-    if (fromFigure) figures[currentDoctor].focus({preventScroll:true});
-    else if (fromList) doctorList[currentDoctor].focus({preventScroll:true});
-  });
-  let touchStart = null;
-  $('#doctor-scene').addEventListener('touchstart', e => { touchStart = {x:e.touches[0].clientX, y:e.touches[0].clientY}; }, {passive:true});
-  $('#doctor-scene').addEventListener('touchend', e => {
-    if (!touchStart) return;
-    const dx = e.changedTouches[0].clientX - touchStart.x, dy = e.changedTouches[0].clientY - touchStart.y;
-    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) selectDoctor(currentDoctor + (dx < 0 ? 1 : -1));
-    touchStart = null;
-  }, {passive:true});
-  $('#doctor-scene').addEventListener('touchcancel', () => { touchStart = null; });
-  $('#doctor-profile-open').addEventListener('click', e => openProfile(e.currentTarget));
+  $$('[data-profile]').forEach(button => button.addEventListener('click', () => openProfile(Number(button.dataset.profile), button)));
   $('#doctor-profile-close').addEventListener('click', () => profileDialog.close());
   profileDialog.addEventListener('close', () => {
     document.body.classList.remove('modal-open');
@@ -130,6 +58,4 @@
   $('#profile-book').addEventListener('click', () => {
     profileDialog.close(); window.VizusBooking.open({doctor: C.doktori[currentDoctor].id});
   });
-  $('#doctor-total').textContent = String(C.doktori.length).padStart(2, '0');
-  selectDoctor(0);
 })();

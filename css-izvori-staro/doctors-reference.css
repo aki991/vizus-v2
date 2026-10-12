@@ -1,0 +1,51 @@
+/* Full-width doctor stage from the supplied template, in the site's light palette. */
+#lekari{background:#f3f8f9}
+#doctor-stage{display:block;width:100%;max-width:2000px;margin:auto;height:clamp(740px,86svh,850px);min-height:740px;padding:0;overflow:hidden;background:#f3f8f9}
+#doctor-stage .bina-scena{position:absolute;inset:0;width:100%;height:100%;border-radius:0;overflow:hidden;background:#f3f8f9}
+#doctor-stage .bina-pozadina{background:linear-gradient(90deg,#f3f8f9 0%,#f3f8f9ed 28%,#f3f8f9c7 53%,#f3f8f9ed 78%,#f3f8f9 100%),url('ordinacija.webp') center/cover}
+#doctor-stage .bina-scena::before{display:none}
+#doctor-stage .bina-glava{position:absolute;top:36px;left:50%;transform:translateX(-50%);width:min(90%,660px);margin:0;gap:12px;z-index:6}
+#doctor-stage .bina-glava h2{font-size:clamp(42px,3.6vw,58px)}
+#doctor-stage .bina-glava .hint{font-size:11px;letter-spacing:0}
+#doctor-stage .bina-krug{bottom:4%;width:min(600px,55%);background:radial-gradient(closest-side,#76b5ba40,transparent);filter:blur(12px)}
+#doctor-stage .bina-tlo{bottom:7%;background:linear-gradient(90deg,transparent,#b9d5d9,transparent)}
+#doctor-stage .lik{bottom:7%;width:auto;aspect-ratio:3/4;max-width:none;transition:left .75s cubic-bezier(.2,.7,.2,1),height .75s cubic-bezier(.2,.7,.2,1),opacity .45s,filter .45s}
+#doctor-stage .lik img{width:100%;height:100%;max-width:100%;object-fit:contain;object-position:center bottom}
+#doctor-stage .lik.aktivan{opacity:1;filter:drop-shadow(0 12px 24px #20495720);pointer-events:auto}
+#doctor-stage .lik.sporedan{opacity:.45;filter:saturate(.7);pointer-events:auto}
+#doctor-stage .lik.sporedan:hover{opacity:.75;filter:saturate(.9)}
+#doctor-stage .lik.daleko,#doctor-stage .lik.daleko:hover{opacity:0;pointer-events:none}
+#doctor-stage .lik:focus-visible{outline:none;filter:drop-shadow(0 0 8px #138b9455)}
+#doctor-stage .bina-info{position:absolute;left:clamp(32px,4vw,80px);top:53%;transform:translateY(-42%);width:min(300px,23vw);max-width:none;padding:0;margin:0;gap:15px;z-index:6}
+#doctor-stage .bi-ime{font-size:clamp(36px,3.2vw,50px)}
+#doctor-stage .bi-bio{font-size:13px;line-height:1.8}
+#doctor-stage .bi-dugmad{gap:10px}
+#doctor-stage .bi-dugmad .button{font-size:14px;padding:11px 17px}
+#doctor-stage .bina-hud{position:absolute;right:clamp(24px,3vw,60px);top:53%;transform:translateY(-42%);width:240px;margin:0;padding:16px;background:#ffffffd9;border:1px solid #cbdfe2;border-radius:18px;z-index:6;backdrop-filter:blur(8px)}
+#doctor-stage #doctor-list{display:grid;gap:8px}
+#doctor-stage .hud-naslov{display:block;padding-bottom:12px}
+#doctor-stage .hud-stavka{width:100%;max-width:none;flex:none;border-radius:12px;padding:10px 8px}
+#doctor-stage .hud-stavka .portrait{width:42px;height:42px}
+#doctor-stage .bina-dno{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);margin:0;padding:0;gap:18px;z-index:6;white-space:nowrap}
+#doctor-stage .strelica{background:#ffffffe6}
+#doctor-stage .strelica:hover{background:var(--green);color:#fff;border-color:var(--green)}
+@media(max-width:1400px) and (min-width:1101px){#doctor-stage .bina-info{left:32px;width:260px}#doctor-stage .bina-hud{right:24px;width:215px;padding:12px}#doctor-stage .hud-ime{font-size:13px}#doctor-stage .bi-dugmad .button{font-size:13px;padding-inline:14px}#doctor-stage .lik.sporedan{opacity:.28}}
+@media(max-width:1100px){
+  #doctor-stage{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:'heading' 'scene' 'controls' 'info' 'list';height:auto;min-height:0;width:min(760px,calc(100% - 48px));padding:48px 0;gap:26px;overflow:visible;background:transparent}
+  #doctor-stage .bina-glava{position:static;transform:none;width:100%;margin:0;grid-area:heading}
+  #doctor-stage .bina-glava h2{font-size:44px}
+  #doctor-stage .hint-desktop{display:none}#doctor-stage .hint-mobile{display:block}
+  #doctor-stage .bina-scena{grid-area:scene;position:relative;inset:auto;height:460px;width:100%;border-radius:24px;overflow:hidden}
+  #doctor-stage .bina-pozadina{background:radial-gradient(ellipse at 50% 65%,#dfeef0,#f3f8f9 73%)}
+  #doctor-stage .lik{bottom:0}#doctor-stage .lik.aktivan{height:96%!important}#doctor-stage .lik.sporedan{opacity:0;pointer-events:none}
+  #doctor-stage .bina-tlo{bottom:0}
+  #doctor-stage .bina-info{position:static;transform:none;grid-area:info;width:100%;max-width:none;padding:0;margin:0;gap:16px}
+  #doctor-stage .bina-hud{position:static;transform:none;grid-area:list;width:100%;padding:16px;margin:0}
+  #doctor-stage #doctor-list{grid-template-columns:1fr 1fr;gap:10px}
+  #doctor-stage .bina-dno{position:static;transform:none;grid-area:controls;justify-content:center;white-space:normal;gap:18px}
+  #doctor-stage .bi-ime{font-size:42px}#doctor-stage .bi-bio{font-size:14px}
+}
+@media(max-width:700px){#doctor-stage{width:calc(100% - 40px);padding:42px 0;gap:24px}#doctor-stage .bina-glava h2{font-size:38px}#doctor-stage .bina-scena{height:390px}#doctor-stage .bina-dno{gap:10px}#doctor-stage .strelica{font-size:12px;padding-inline:11px}#doctor-stage #doctor-list{grid-template-columns:1fr}#doctor-stage .hud-ime{font-size:14px}#doctor-stage .bi-ime{font-size:39px}}
+@media(prefers-reduced-motion:reduce){#doctor-stage .lik{transition:none}}
+/* The fourth (off-stage) doctor stays fully hidden at every width until the carousel rotates it in. */
+#doctor-stage .lik.daleko,#doctor-stage .lik.daleko:hover{opacity:0;pointer-events:none}

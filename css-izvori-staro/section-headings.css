@@ -1,0 +1,31 @@
+/* Consistent, prominent titles for the homepage content sections. */
+main :is(.section-heading,.about-heading,.journey-heading,.experiences-heading){text-align:center}
+main .section-heading{flex-direction:column;align-items:center;gap:18px;margin-bottom:48px}
+main .section-heading>p{max-width:620px;padding:0}
+main :is(#services-title,#doctors-title,#about-title,#visit-title,#experiences-title,#booking-heading){font-family:var(--serif);font-size:clamp(60px,5.5vw,86px);font-weight:400;line-height:1.12;letter-spacing:-.035em;margin:0;text-align:center}
+main .section-subtitle{font-family:var(--serif);font-size:28px;line-height:1.4;margin-top:20px;color:var(--content-ink,var(--ink))}
+main .section-subtitle em{color:var(--green);font-style:italic}
+main .about{grid-template-columns:minmax(0,1fr);gap:32px}
+main .about-copy{padding-top:0;max-width:760px;margin:auto;text-align:center}
+main .about-copy .text-link{justify-content:center}
+main .journey-heading .section-subtitle{font-size:28px}
+#doctor-stage .bina-glava{width:min(90%,900px)}
+#doctor-stage .bina-glava h2{font-size:clamp(60px,5.5vw,86px)}
+#doctor-stage .bina-hud{width:290px;padding:20px}
+#doctor-stage .hud-naslov{font-size:21px;letter-spacing:0;color:var(--ink);padding-bottom:16px}
+#doctor-stage .hud-stavka{padding:12px 10px;gap:14px;text-align:left}
+#doctor-stage .hud-stavka .portrait{width:62px;height:62px}
+#doctor-stage .hud-ime{font-size:17px;line-height:1.35}
+#doctor-stage .hud-spec{font-size:12px;line-height:1.45;margin-top:5px}
+@media(max-width:1400px) and (min-width:1101px){#doctor-stage .bina-hud{width:270px;padding:16px}}
+@media(max-width:1100px){#doctor-stage .bina-hud{width:100%}#doctor-stage .bina-glava{width:100%}}
+@media(max-width:700px){
+  main :is(#services-title,#about-title,#visit-title,#experiences-title,#booking-heading),#doctor-stage .bina-glava h2{font-size:clamp(46px,12vw,60px)}
+  main .section-heading{gap:16px;margin-bottom:34px}
+  main .section-subtitle,main .journey-heading .section-subtitle{font-size:22px;margin-top:16px}
+  main .about{gap:26px}
+  #doctor-stage .bina-hud{padding:18px}
+  #doctor-stage .hud-stavka .portrait{width:66px;height:66px}
+  #doctor-stage .hud-ime{font-size:18px}
+  #doctor-stage .hud-spec{font-size:13px}
+}

@@ -1,12 +1,26 @@
 /* Reference-led header layout and the pale turquoise hero gradient. */
 :root{--nav-font:'Roboto Condensed','Arial Narrow',Arial,sans-serif}
-.hero{background:#a9d2d7;color:#123f48}
-.hero-overlay{background:linear-gradient(100deg,rgba(122,190,199,.98) 0%,rgba(156,207,213,.93) 28%,rgba(191,222,226,.73) 57%,rgba(224,239,241,.22) 100%),linear-gradient(0deg,#b9dce0,transparent 30%)}
+.hero{background:#a9d2d7;color:#123f48;min-height:clamp(700px,90svh,900px)}
+.hero-overlay{background:radial-gradient(ellipse at 0% 100%,#51a9b1ed 0%,#75bac2a6 24%,transparent 64%),radial-gradient(ellipse at 100% 0%,#3c7c8973 0%,transparent 60%),linear-gradient(128deg,#aed8dad9 0%,#deeeebe6 46%,#b6d3d357 100%)}
+.hero-main{padding-top:140px;padding-bottom:40px}
+.hero .eye-scene{width:min(100%,clamp(360px,33vw,500px))}
+.hero-bottom{padding-bottom:24px}
 .hero-copy .eyebrow{color:#176a76}.hero h1>span,.hero h1>strong,.hero-promise{color:#123f48}.hero-description,.hero-experience{color:#285d67}
 .hero .button-ghost{background:#ffffff40;border-color:#548d9680;color:#174e59}.hero .button-ghost:hover{background:#ffffff80}
 .hero-bottom .explore,.hero-bottom .demo-caption,.visual-caption{color:#306570}.scroll-line{background:#498b97}.scroll-line:after,.visual-caption .focus-dot{background:#217887}
 .visual-caption button{background:#ffffff45;color:#285d67;border-color:#528f9870}
-.header,.header.header-light,.header:not(.header-light){height:100px;background:linear-gradient(110deg,#539aa9ed 0%,#77b5c4df 34%,#badce3d1 72%,#d9eaf0c7 100%);color:#154c5c;border-bottom-color:#8bb8c555;box-shadow:0 3px 20px #225c6210;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.header,.header.header-light,.header:not(.header-light){height:100px;background:linear-gradient(110deg,#539aa966 0%,#77b5c445 34%,#badce32e 72%,#d9eaf01f 100%);color:#154c5c;border-bottom-color:#8bb8c52e;box-shadow:0 3px 20px #225c6208;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.header.header-light{background:linear-gradient(110deg,#539aa9b8 0%,#77b5c4a6 34%,#badce3a6 72%,#d9eaf0a6 100%)}
+/* Muted turquoise orbits follow the clinic's logo and hero palette. */
+.hero .blue-orbits{stroke:#368f98;filter:drop-shadow(0 0 3px #438f8d55)}
+.hero .blue-node{fill:#92d1ce;stroke:#347f88;filter:drop-shadow(0 0 4px #438f8d66)}
+.hero .blue-node.hollow{fill:#aed8da40;stroke:#3c8d94}
+.hero .blue-satellite i{border-color:#5ca2a5;background:#70b9b64d;box-shadow:0 0 14px #438f8d66}
+.hero .satellite-two i{background:#92d1ce}
+.hero .satellite-three i{background:transparent;box-shadow:0 0 11px #438f8d55}
+.hero .eye-orbit{border-color:#4a9aa555}.hero .orbit-two{border-color:#6aafaf66}.hero .orbit-three{border-color:#4a9aa533}
+.hero .eye-orbit:after,.hero .orbit-spark{background:#a6d8d2;box-shadow:0 0 13px 4px #4b9a9966}
+.hero .focus-bracket{border-color:#689fa577}
 .header .nav-shell{display:grid;grid-template-columns:minmax(200px,1fr) auto minmax(200px,1fr);gap:24px}
 .header .brand{justify-self:start;gap:0;width:auto;height:auto;margin:0}
 .header .brand img,.header-light .brand img,.header:not(.header-light) .brand img{width:140px;height:94px;object-fit:contain;filter:drop-shadow(0 1px 1px #0a3d4b66)}
@@ -26,5 +40,13 @@
   .header.menu-open .navigation{display:flex}
   .header .navigation a{font-size:19px;text-align:center;border-bottom:1px solid #dcecee;padding:14px}
 }
-@media(max-width:700px){.hero-overlay{background:linear-gradient(180deg,#86c3cbf5 0%,#afd5dbe8 34%,#cce5e8a1 65%,#b9dce0 100%)}}
+@media(max-width:700px){
+  .hero{min-height:0}
+  .hero-overlay{background:radial-gradient(ellipse at 0% 100%,#51a9b1f0 0%,#75bac299 28%,transparent 66%),radial-gradient(ellipse at 100% 0%,#508b986b 0%,transparent 55%),linear-gradient(128deg,#b1dcdde8 0%,#deeeebed 45%,#bddbdec7 100%)}
+  .hero-main{padding-top:114px;padding-bottom:24px;gap:30px}
+  .hero h1>strong{font-size:clamp(72px,21vw,100px)}
+  .hero-promise{font-size:clamp(28px,7.5vw,36px)}
+  .hero .eye-scene{width:min(72%,260px)}
+  .hero-bottom{padding-bottom:20px}
+}
 @media(max-width:420px){.header .nav-shell{width:calc(100% - 24px);grid-template-columns:1fr auto 34px;gap:8px}.header .brand img,.header-light .brand img,.header:not(.header-light) .brand img{width:94px;height:64px}.header .nav-book{font-size:15px;padding-inline:14px;min-height:41px}.header .menu-toggle{width:34px}}

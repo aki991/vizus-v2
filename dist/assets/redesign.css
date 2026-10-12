@@ -1,0 +1,182 @@
+/* Verzija 2 — redizajn: svetla tirkizna paleta, Inter, kartice i zaobljena dugmad.
+   Učitava se posle site.css i preklapa njegova pravila. */
+:root{
+  --v2-teal:#138a90;--v2-teal-hover:#0f737a;--v2-ink:#0d4a52;--v2-text:#4b666b;
+  --v2-soft:#eef4f5;--v2-line:#e1ecee;--v2-shadow:0 10px 30px #0f3f461a;--v2-radius:18px;
+  --v2-header:88px
+}
+body{background:#fff;color:var(--v2-ink)}
+html{scroll-padding-top:calc(var(--v2-header) + 12px)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* Dugmad */
+.v2-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 30px;border:2px solid var(--v2-teal);border-radius:999px;font:600 18px/1.2 var(--sans);white-space:nowrap;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.v2-btn:hover{transform:translateY(-1px)}
+.v2-btn-solid{background:var(--v2-teal);color:#fff;box-shadow:0 6px 16px #138a9033}
+.v2-btn-solid:hover{background:var(--v2-teal-hover);border-color:var(--v2-teal-hover)}
+.v2-btn-outline{background:#ffffff66;color:#11727a}
+.v2-btn-outline:hover{background:#fff}
+.v2-btn-small{min-height:44px;padding:10px 22px;font-size:16px}
+.v2-btn-xs{min-height:36px;padding:7px 18px;font-size:14px;border-width:1px;box-shadow:none}
+
+/* Zaglavlje: bela traka */
+#header.header,#header.header.header-light,#header.header:not(.header-light){height:var(--v2-header);background:#fff;color:var(--v2-ink);border-bottom:1px solid var(--v2-line);box-shadow:0 2px 18px #0f3f460f;-webkit-backdrop-filter:none;backdrop-filter:none}
+#header.is-scrolled{box-shadow:0 6px 24px #0f3f461f}
+#header .brand img{width:118px;height:70px;object-fit:contain;filter:none}
+#header .navigation{gap:34px;color:var(--v2-ink)}
+#header .navigation a{font-family:var(--sans);font-size:16px;font-weight:500;color:#0f5f68}
+#header .navigation a:hover{color:var(--v2-teal)}
+#header .navigation a:after{background:var(--v2-teal)}
+#header .nav-book{font-family:var(--sans);font-size:16px;font-weight:600;min-height:46px;padding:10px 24px;background:var(--v2-teal);border:0;border-radius:999px;color:#fff;box-shadow:0 6px 16px #138a9033}
+#header .nav-book:hover{background:var(--v2-teal-hover)}
+#header .menu-toggle{color:var(--v2-ink)}
+@media(max-width:900px){
+  :root{--v2-header:76px}
+  #header .brand img{width:100px;height:58px}
+  #header .navigation{top:var(--v2-header);background:#fff;border-bottom:1px solid var(--v2-line);box-shadow:0 14px 24px #0f3f461a}
+  #header .navigation a{font-size:18px;border-bottom-color:var(--v2-line)}
+  #header .nav-book{font-size:15px;min-height:42px;padding:9px 18px}
+}
+
+/* Hero */
+.v2-hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;min-height:clamp(600px,46vw,880px);padding-top:var(--v2-header);background:linear-gradient(100deg,#93cdd1 0%,#bfe2e4 30%,#e4f2f2 52%,#f3f1ee 100%)}
+.v2-hero::before{content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 0% 100%,#4fa7ae66 0%,transparent 55%)}
+.v2-hero-media{position:absolute;top:var(--v2-header);right:0;bottom:0;width:62%;z-index:-2;background:url('hero-oko.webp') 50% 42%/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 32%);mask-image:linear-gradient(90deg,transparent 0%,#000 32%)}
+.v2-swoosh{position:absolute;left:0;right:0;bottom:0;top:var(--v2-header);width:100%;height:calc(100% - var(--v2-header));z-index:-1;fill:none;pointer-events:none}
+.v2-swoosh path,.v2-about-swoosh path{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.sw-teal{stroke:#2a9ba2;stroke-width:3}
+.sw-silver{stroke:#cfd8db;stroke-width:5}
+.sw-teal.thin{stroke-width:2}
+.v2-hero-inner{width:min(1200px,calc(100% - 48px));padding-block:56px}
+.v2-hero-copy{max-width:620px}
+.v2-hero h1{font-family:var(--sans);font-weight:700;font-size:clamp(40px,3.6vw,68px);line-height:1.12;letter-spacing:-.02em;color:var(--v2-ink)}
+.v2-hero-lead{margin-top:22px;font-size:clamp(18px,1.35vw,25px);line-height:1.5;color:#2b5d65}
+.v2-hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:36px}
+@media(max-width:760px){
+  .v2-hero{align-items:flex-end;min-height:min(100svh,780px);background:linear-gradient(180deg,#e7f3f3 0%,#bfe2e4 60%,#9fd3d6 100%)}
+  .v2-hero::before{background:linear-gradient(0deg,#9fd3d6 0%,#bfe2e4cc 38%,transparent 62%)}
+  .v2-hero-media{width:100%;bottom:auto;height:62%;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 55%,transparent 100%)}
+  .v2-hero-inner{width:calc(100% - 40px);padding-block:24px 36px}
+  .v2-hero h1{font-size:clamp(32px,9vw,42px)}
+  .v2-hero-lead{font-size:17px;margin-top:14px}
+  .v2-hero-actions{margin-top:24px;gap:12px}
+  .v2-hero-actions .v2-btn{flex:1 1 150px;font-size:16px;min-height:48px;padding-inline:18px}
+}
+
+/* Sekcije i naslovi */
+.v2-section{padding-block:clamp(64px,7vw,110px)}
+.v2-section>.shell{width:min(1200px,calc(100% - 48px))}
+.v2-title{font:700 clamp(32px,2.6vw,46px)/1.15 var(--sans);letter-spacing:-.01em;color:var(--v2-ink);text-align:center;margin-bottom:clamp(36px,4vw,56px)}
+main #optics-title,main #faq-title,main #booking-heading{font-family:var(--sans);font-weight:700;font-size:clamp(32px,2.6vw,46px);letter-spacing:-.01em;color:var(--v2-ink)}
+main .optics .section-subtitle,main .faq .section-subtitle{font-family:var(--sans);font-size:22px;font-weight:500}
+main .optics .section-subtitle em,main .faq .section-subtitle em{font-style:normal;color:var(--v2-teal)}
+
+/* Usluge */
+.v2-services{background:#fff}
+.v2-service-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.v2-service{display:flex;flex-direction:column;background:#fff;border:1px solid var(--v2-line);border-radius:var(--v2-radius);box-shadow:var(--v2-shadow);overflow:hidden;transition:transform .25s,box-shadow .25s}
+.v2-service:hover{transform:translateY(-4px);box-shadow:0 16px 36px #0f3f4626}
+.v2-service-image{position:relative;aspect-ratio:4/3}
+.v2-service-image img{width:100%;height:100%;object-fit:cover}
+.v2-service-icon{position:absolute;left:18px;bottom:-27px;display:grid;place-items:center;width:56px;height:56px;border:3px solid #fff;border-radius:15px;background:var(--v2-teal);box-shadow:0 6px 14px #138a9040}
+.v2-service-icon svg{width:30px;height:30px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.v2-service-body{display:flex;flex-direction:column;flex:1;padding:42px 20px 22px}
+.v2-service-body h3{font:700 21px/1.25 var(--sans);color:var(--v2-ink)}
+.v2-service-body p{flex:1;margin:10px 0 20px;font-size:15px;line-height:1.6;color:var(--v2-text)}
+.v2-service-body .v2-btn{align-self:center}
+@media(max-width:1100px){.v2-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.v2-service-grid{grid-template-columns:1fr;gap:20px}}
+
+/* Naš tim */
+.v2-team{background:var(--v2-soft)}
+.v2-team-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;max-width:1080px;margin:0 auto}
+.v2-doctor{display:flex;flex-direction:column;background:#fff;border:1px solid var(--v2-line);border-radius:var(--v2-radius);box-shadow:var(--v2-shadow);overflow:hidden}
+.v2-doctor-photo{position:relative;display:block;width:100%;aspect-ratio:1/1;padding:0;border:0;overflow:hidden;cursor:pointer;background:radial-gradient(ellipse at 50% 30%,#ffffff 0%,#e3f0f1 70%,#d3e7e9 100%)}
+.v2-doctor-photo img{position:absolute;left:-20%;top:3%;width:140%;max-width:none;height:auto;transition:transform .4s}
+.v2-doctor-photo:hover img{transform:scale(1.04)}
+.v2-doctor-photo:focus-visible{outline:3px solid #00c4cc;outline-offset:-3px}
+.v2-doctor-body{display:flex;flex-direction:column;align-items:center;flex:1;padding:18px 14px 22px;text-align:center}
+.v2-doctor-body h3{font:700 19px/1.25 var(--sans);color:var(--v2-ink)}
+.v2-doctor-body p{flex:1;margin:6px 0 16px;font-size:14px;line-height:1.45;color:var(--v2-text)}
+@media(max-width:900px){.v2-team-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(max-width:380px){.v2-team-grid{grid-template-columns:1fr}}
+
+/* O nama */
+.v2-about{background:#fff;overflow:hidden}
+.v2-about-inner{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(36px,5vw,72px)}
+.v2-about-photo{border-radius:20px;overflow:hidden;box-shadow:var(--v2-shadow);aspect-ratio:4/3.4}
+.v2-about-photo img{width:100%;height:100%;object-fit:cover}
+.v2-about-copy{position:relative;z-index:1}
+.v2-about-copy h2{font:700 26px/1.2 var(--sans);color:var(--v2-teal);letter-spacing:0}
+.v2-about-claim{margin-top:8px;font:700 clamp(30px,2.6vw,44px)/1.15 var(--sans);letter-spacing:-.01em;color:var(--v2-ink)}
+.v2-about-strong{margin-top:22px;font-size:18px;font-weight:600;color:var(--v2-ink)}
+.v2-about-copy p:not(.v2-about-claim):not(.v2-about-strong){margin-top:12px;font-size:16px;line-height:1.7;color:var(--v2-text)}
+.v2-about-swoosh{position:absolute;right:-60px;bottom:-110px;width:min(560px,60%);height:auto;pointer-events:none;z-index:0}
+@media(max-width:900px){.v2-about-inner{grid-template-columns:1fr}.v2-about-swoosh{display:none}}
+
+/* Od poziva do nalaza */
+.v2-visit{background:#fff}
+.v2-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 64px;max-width:980px;margin:0 auto;padding:0;list-style:none}
+.v2-step{display:flex;align-items:flex-start;gap:20px}
+.v2-step-num{flex:0 0 auto;min-width:.6em;font:800 clamp(64px,6vw,96px)/.9 var(--sans);color:var(--v2-teal)}
+.v2-step-icon{width:44px;height:44px;fill:none;stroke:var(--v2-teal);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.v2-step h3{margin:8px 0 6px;font:700 21px/1.25 var(--sans);color:var(--v2-ink)}
+.v2-step p{font-size:16px;line-height:1.6;color:var(--v2-text)}
+@media(max-width:700px){.v2-steps{grid-template-columns:1fr;gap:32px}}
+
+/* Traka sa brojkama */
+.v2-band{background:linear-gradient(110deg,#13868c,#1a959b 55%,#138a90);color:#fff;padding-block:clamp(44px,5vw,64px)}
+.v2-band-inner{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;width:min(1100px,calc(100% - 48px));text-align:center}
+.v2-band-value{font:700 clamp(34px,3vw,50px)/1.1 var(--sans);letter-spacing:-.01em}
+.v2-band-label{margin-top:8px;font-size:17px;opacity:.92}
+@media(max-width:700px){.v2-band-inner{grid-template-columns:1fr;gap:28px}}
+
+/* Iskustva */
+.v2-reviews{background:var(--v2-soft)}
+.v2-review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1040px;margin:0 auto}
+.v2-review{padding:28px 24px 30px;background:#fff;border:1px solid var(--v2-line);border-radius:var(--v2-radius);box-shadow:var(--v2-shadow);text-align:center}
+.v2-review-avatar{width:76px;height:76px;margin:0 auto 14px;border:3px solid #fff;border-radius:50%;object-fit:cover;box-shadow:0 4px 14px #0f3f4626}
+.v2-review h3{font:700 18px/1.3 var(--sans);color:var(--v2-ink)}
+.v2-review-stars{margin:6px 0 12px;color:#f2b01e;font-size:18px;letter-spacing:2px}
+.v2-review blockquote{margin:0;font-size:15px;line-height:1.65;color:var(--v2-text)}
+@media(max-width:900px){.v2-review-grid{grid-template-columns:1fr;max-width:480px}}
+
+/* Optika i česta pitanja u novom stilu */
+.optics-card h3{font-family:var(--sans);font-weight:700;font-size:21px}
+.optics-card{border-radius:var(--v2-radius)}
+.faq-item summary{font-family:var(--sans);font-weight:600;font-size:20px}
+
+@media(prefers-reduced-motion:reduce){.v2-btn,.v2-service,.v2-doctor-photo img{transition:none}}
+
+/* Stara pravila vezana za ID-jeve imaju veću težinu; ovde ih preklapamo. */
+main :is(#services-title,#doctors-title,#visit-title,#experiences-title).v2-title{font-family:var(--sans);font-size:clamp(32px,2.6vw,46px);font-weight:700;line-height:1.15;letter-spacing:-.01em;margin:0 0 clamp(36px,4vw,56px);text-align:center;color:var(--v2-ink)}
+main #about-title{font-family:var(--sans);font-size:26px;font-weight:700;line-height:1.2;letter-spacing:0;margin:0;text-align:left;color:var(--v2-teal)}
+#lekari.v2-team{padding-block:clamp(64px,7vw,110px);background:var(--v2-soft);color:var(--v2-ink);border:0}
+@media(max-width:900px){main #about-title{text-align:left}}
+
+/* Hero, verzija sa širokom slikom: slika već sadrži prelaz i linije, a brojke su na dnu prvog ekrana. */
+.v2-hero{flex-direction:column;align-items:stretch;justify-content:space-between;min-height:max(640px,100svh);background:#cfe8ea url('hero-oko-siroka.webp') 62% 50%/cover no-repeat}
+.v2-hero::before{background:linear-gradient(90deg,#ffffff38 0%,transparent 45%)}
+.v2-hero-media{display:none}
+.v2-hero-inner{flex:1;display:flex;align-items:center;margin-inline:auto}
+.v2-hero-bottom{display:flex;justify-content:space-between;align-items:center;gap:40px;width:min(1200px,calc(100% - 48px));margin:0 auto;padding:22px 0 28px;border-top:1px solid #0d4a5226}
+.v2-hero-facts{display:flex;align-items:center;gap:clamp(28px,4.5vw,72px)}
+.v2-hero-facts p{display:flex;align-items:center;gap:12px;margin:0;color:var(--v2-ink)}
+.v2-hero-facts strong{font:700 clamp(32px,2.4vw,42px)/1 var(--sans)}
+.v2-hero-facts span{max-width:150px;font-size:15px;line-height:1.35;font-weight:600;color:#2b5d65}
+.v2-hero-explore{display:flex;align-items:center;gap:14px;font-size:15px;font-weight:500;color:#2b5d65;white-space:nowrap}
+.v2-hero-explore:hover{color:var(--v2-teal)}
+.v2-scroll-line{position:relative;width:1px;height:30px;background:#2b7f88}
+.v2-scroll-line::after{content:'';position:absolute;left:-2px;bottom:0;width:5px;height:5px;border-radius:50%;background:var(--v2-teal)}
+@media(max-width:980px){.v2-hero-bottom{flex-wrap:wrap;gap:16px}}
+@media(max-width:760px){
+  .v2-hero{min-height:100svh;background-position:80% 50%}
+  .v2-hero::before{background:linear-gradient(0deg,#d9eeefee 0%,#d9eeefcc 42%,transparent 72%)}
+  .v2-hero-inner{align-items:flex-end}
+  .v2-hero-bottom{width:calc(100% - 40px);padding:12px 0 20px;border-top:0}
+  .v2-hero-facts{display:none}
+}
+/* Slika heroja kao <img> (pouzdanije od CSS pozadine). */
+.v2-hero{background:#cfe8ea}
+.v2-hero-img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;max-width:none;object-fit:cover;object-position:62% 50%}
+@media(max-width:760px){.v2-hero-img{object-position:80% 50%}}
