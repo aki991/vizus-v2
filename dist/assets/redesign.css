@@ -286,3 +286,10 @@ main #about-title{font-size:30px}
   .v2-hero-exp{display:block}
   .v2-hero-actions{margin-top:24px}
 }
+
+/* ===== Hero se na računaru skalira kao celina, kao u verziji 1 =====
+   desktop-hero-scale.js postavlja --hero-scale (0.75–1.33) i --hero-h; unutar heroa sve je u merama za ekran od 1920px. */
+@media(min-width:1201px){
+  html.hero-scaled .v2-hero{zoom:var(--hero-scale);min-height:var(--hero-h);padding-top:var(--v2-header);--hs:1px}
+  html.hero-scaled .v2-hero-facts{gap:72px}
+}
